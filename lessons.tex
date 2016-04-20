@@ -1,0 +1,491 @@
+\documentclass{article}
+
+
+%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage[framed,numbered,autolinebreaks]{mcode}
+\usepackage{fullpage}
+\usepackage{url,textcomp}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{18pt}
+\title{MATLAB Introduction}
+\author{Rob Campbell \& Maxime Rio}
+% //////////////////////////////////////////////////
+
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{helvet}
+\usepackage[compact]{titlesec}  
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
+\begin{document}
+
+\maketitle
+
+
+\section*{Introduction}
+
+MATLAB is a fairly simple programming language designed to make analysis of data easy. It is commonly used in 
+academic research, industry, and finance. It is used across scientific disciplines, from biologists to engineers.
+During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, acquire new action 
+potential data with electrodes, and analyse these data. Today you will learn the basics of MATLAB.
+
+
+MATLAB stores data in \textbf{variables} and these variables. Variables are manipulated by \textbf{functions}.
+There are simple functions for performing tasks such as multiplication and division. There are also more 
+complex functions for doing things such as calculating averages, fitting lines, and doing statistical tests.
+Today you will learn the basic functions in MATLAB as well as how to chain these together using \textbf{loops}
+and \textbf{logic statements} to automate sequences of operations. This is the basis of programming. 
+
+As you proceed you will doubtless get stuck. For help you should use the MATLAB documentation that is built-in, 
+Google, and ask for assistance. 
+
+
+
+\pagebreak
+
+\section*{Before we begin}
+
+Start MATLAB from the Windows start menu. 
+
+Add section on navigating the command line window, opening an m-file, and the system path.
+
+Describe the ribbon. 
+
+
+\pagebreak
+\section*{One: data types and basic plotting}
+
+\subsection*{Working at the command line with simple variables}
+We will begin by treating MATLAB as a graphical calculator. We'll see how to define simple variables, how to manipulate them, 
+and how to plot them. We will start off doing these things at the \verb|command line|, where you see the \verb|>>| symbol. You type
+commands in the space after the \verb|>>|
+
+Type the following into the command line: \\
+\verb|>>| \mcode{\%This is a comment} \\
+then press return. \\
+Nothing happened! Any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't interpreted by MATLAB. When you start writing
+your own functions (i.e. MATLAB code stored in a text file) you should be using comments all the time to make your code easier to read at a later time. 
+You will also see comments in files we give you. 
+
+Now try typing a number, e.g. \\
+\verb|>>| \mcode{1} \\
+See how it echoes the number back to you? Now type: \\
+\verb|>>| \mcode{1;} \\ 
+Note the presence of the \mcode{;} symbol. See how it no longer echoes the number back to you? The \mcode{;} suppresses the echo. You will use this feature a lot so keep it in mind. 
+
+Let's create some variables. Variables are assigned with the \mcode{=} (equals) operator. Type the following into the command line. You don't need to type the 
+comments, those are just to explain what is going on. 
+
+
+\begin{lstlisting}
+t=1   %assign the number 1 to a variable called t;
+whos  %view the workspace
+r=10.5;  %Create another variable. Note lack of echoeing
+A=r    %assigning one variable to another
+whos   %view the workspace again
+\end{lstlisting}
+
+Now let's look at basic arithmetic operators. Type the following into the command line (note we leave off the semicolon so you can see the output):
+\begin{lstlisting}
+t=2;
+T=t+10 %addition
+T=t-10 %subtraction
+T=t*2  %multiplication
+T=t/10 %division
+T=t^3  %raising to the third power
+\end{lstlisting}
+
+
+Try typing \mcode{whos} and you see the variables in your workspace. Type \mcode{clear T}. Re-type \mcode{whos}, what happened? Type \mcode{clear all} then \mcode{whos}. What's happened now? You've now learned the basics of entering information into the command-line. 
+
+
+\subsection*{Working at the command line with functions}
+You will now learn to run a built-in MATLAB function from the command line. Type \mcode{rand} into the command line and press return. What happened? Do it again a few more times. What happened. What do you think the \mcode{rand} command does? Type \mcode{help rand} to see the help text for the \mcode{rand} function. Type \mcode{doc rand} to get this in GUI form. Read the help text to understand how the inputs to function work. 
+
+Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology. 
+
+
+
+\subsection*{Writing your own functions}
+A MATLAB \textbf{function} is just a text file that contains MATLAB code. You will write them in the MATLAB editor and save them to disk. 
+After they've been saved, you will be able to run (or `call') the function from the command line in the same way as you did with the 
+\mcode{rand} command, above. 
+
+Open a new file (`New' up at the top left of the GUI). Save the file to the current directory and call it \verb|adder.m| 
+The current directory is displayed up at the top or reported by typing \mcode{pwd} at the command line. Type the following into
+your file in the editor and save it:
+
+\begin{lstlisting}
+function adder
+
+  myVariable=99;
+  myOtherVariable=101;
+\end{lstlisting}
+
+Run the function by typing its name into the command line. What happened? Like before type \mcode{whos} into the command line. 
+What do you see? Notice how the variables defined in the \mcode{adder} function are not present in the \textbf{base workspace}. 
+i.e. the variables available to you in the command line. This fact is called `\textbf{scope}'. The variables in your \mcode{adder} 
+function exist only in the scope of the \mcode{adder} function. They are created when \mcode{adder} runs and they are cleaned 
+up when it ends. This is a very important programming concept and you should keep it in mind.
+
+Let's make \mcode{adder} \textit{do} something and return information to the command line. We will feed it an 
+\textbf{argument} and have it multiply this by 2 then subtract 1. Finally it will return the result to  the workspace. 
+Modify \mcode{adder} so that it reads as follows, then save it.
+
+\begin{lstlisting}
+function OUT = adder(varIN)
+  % the adder function multiplies by 2 then subtracts 1
+  OUT = varIN * 2 - 1;
+
+\end{lstlisting}
+
+At the command line you will type, for example: \mcode{A=myFile(34)} Then type \mcode{whos} See what's happened? It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
+
+
+%learn about round() and mod()
+
+\pagebreak
+\subsection*{Vectors and indexing}
+So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors} and 
+\textbf{matrices}. A vector is just a list (one row or one column) of numbers. Let's learn how to create and manipulate these. Type
+the following into the command line.
+
+\begin{lstlisting}
+[1,20,30,40,500,1000]  %This makes a vector
+t=[1,20,30,40,500,1000] %Assign vector to a variable
+\end{lstlisting}
+
+You will now learn how to `\textbf{index}' the vector. Indexing is \textit{very important}. Basically, `indexing`
+is the process of accessing sub-portions of the vector. Go through the following at the command line. If any of it
+does not make sense you should ask someone for help. 
+\begin{lstlisting}
+t(1)  %Access first element of vector
+t(2)
+2:4  %Create a range of numbers
+t(2:4) %Use this idea to access a range of elements
+
+%Therefore this works too:
+idx=2:4;
+t(idx)
+
+t(end) %You can access the last element this way
+length(t) %The length command returns the vector length
+
+%two ways accessing every other element
+t(1:2:length(t))
+t(1:2:end)
+%make sure you're happy with what, say, 1:2:10 does
+\end{lstlisting}
+
+The variable \mcode{t} is a row vector. You can turn it into a column vector by transposing it. Work through the following:
+
+\begin{lstlisting}
+t=1:3:30; %Assign vector to a variable
+length(t) %reports the length
+t' %see how we've transposed our variable
+t=t'; %to replace t with the transpose
+length(t) %the length is still the same. 
+
+%what's going on here? Read about the differences between size and length
+size(t)
+size(t')
+
+\end{lstlisting}
+
+Arithmetic still works with vectors. Try the following:
+
+\begin{lstlisting}
+t=1:3:30; 
+t*10 %This is called scalar expansion
+\end{lstlisting}
+
+\pagebreak
+
+\subsection*{Arrays}
+A vector has one dimension, whereas an \textbf{array} (a matrix) has two or more dimensions. 
+Arrays can be two dimensional or they may have as many dimensions as you like. e.g. you can make cubes of numbers.
+During this course you will handle 2-photon imaging data which are represented as a 3-D matrix. The first two dimensions
+for the rows and columns of pixels in the image and the third dimension is time. You will also handle vector data, such as
+voltage traces from an electrical recording of neuronal activity. 
+
+In the following exercise you will learn how to make a matrix `by hand` and how to index it.
+
+
+\begin{lstlisting}
+t=[1,2,3,90; 4,5,6,90] %make an array with two rows and four columns 
+
+%note the following. What is the length command reporting?
+size(t)
+length(t)
+\end{lstlisting}
+
+Now you will learn how to index an array. It is very similar to indexing vectors:
+\begin{lstlisting}
+%Accessing rows and columns
+t(1,:) %row
+t(:,2) %column
+\end{lstlisting}
+
+Complete the following tasks:
+\begin{itemize}
+\item Make an array of random numbers with 5 columns and 10 rows and assign it to a variable called \mcode{R}. i.e.
+make an array of size 5 by 10. This is a 2D array.
+\item Index R to return to the command line the value in column 3, row 8
+\item Index R to return to the command line the 4th row
+\item Index R to return to the command line the 7th column
+\item Index R to return to the command line the first 5 values on the 2nd row
+\item Make an array of random numbers  with 5 columns and 10 rows and assign it to a variable called \mcode{R}
+\item Make an array of random numbers of size 5 by 5 by 3. This is a a 3D array. Use the \mcode{help} or \mcode{doc} commands
+for help. The purpose of this question is to teach you how to read the help text.
+\end{itemize}
+
+You have now learned to create and index vectors and arrays. 
+
+\pagebreak
+\subsection*{Basic plotting of vector data}
+You will now learn to plot vectors and arrays of random numbers. Line and point data are plotted to screen
+with the \mcode{plot} command. Open the doc page for the \mcode{plot} command. Read the \textbf{Description} and
+\textbf{Example} sections. You will need to understand this information to complete the following exercises
+
+\begin{itemize}
+\item Create a new function called \mcode{testPlot}. It should look like this to begin with, then you will fill it in:
+\begin{lstlisting}
+function testPlot
+% exercise function
+clf %clears the current figure
+
+subplot(2,2,1) %make subplot axix in top left
+
+subplot(2,2,2) %make subplot axis in top right
+
+subplot(2,2,3) %make subplot axis in bottom left
+
+subplot(2,2,4) %make subplot axis in bottom right
+
+\end{lstlisting}
+
+\item Run the above. You should get a figure window with four empty sub-plots. Do not proceed until you have this.
+
+\item Within your function, add a line that makes a \textbf{vector} of 100 random numbers and stores this in a variable called R.
+Don't forget the semicolon.
+\item Add a line of code below the first \mcode{subplot} command to plot the variable R as a default line plot using the \mcode{plot} function.
+\item Add a line of code below the second \mcode{subplot} command to plot the variable R as a red line.
+\item Add a line of code below the third \mcode{subplot} command to plot the variable R as a thicker red line.
+\item Add a line of code below the fourth \mcode{subplot} command to plot the variable R as \textbf{red circles} not linked by a line.
+\item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers. 
+\item SAVE THE RESULTING PLOT (WE NEED TO DECIDE HOW THEY WILL DO THIS)
+\item SHOULD WE TEACH \mcode{hold on} and \mcode{hold off}?
+\end{itemize}
+
+
+\pagebreak
+\subsection*{Basic plotting of array (image) data}
+\textbf{Extend all this to images with \mcode{imagesc}.}
+
+
+
+\pagebreak
+\section*{Non-numeric data and complex data structures} 
+\textbf{WE SHOULD REMOVE AS MUCH OF THIS AS POSSIBLE}
+
+\subsection*{Strings}
+A string in MATLAB is a vector of characters. We can define a string easily enough: 
+\begin{lstlisting}
+myStr='This is a string'; %just use single quotes to define a string
+%Strings follow the same indexing rules as numeric vectors:
+myStr(1:4) %returns "This" to the command line
+\end{lstlisting}
+
+Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another. 
+
+As you might expect, MATLAB has a load of functions to deal with strings. Let's look at two of them now. \mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string. Here are examples:
+
+\begin{lstlisting}
+A='a string';
+B='some other string';
+C='a string';
+strcmp(A,B) %returns 0, indicating that this comparison is false
+strcmp(A,C) %returns 1, indicating that this comparison is Turner
+
+strfind(A,'string') %returns 3, why is that?
+strfind(A,'String') %returns an empty array, why is that?
+\end{lstlisting}
+
+
+\subsection*{Complex data types}
+We've so far covered numeric data and shown how they're stored in arrays, and we've also covered strings. It would seem that we've got our bases covered: now we can work with both numbers and text. What else is there? It turns out there is something missing: strings and arrays aren't very good ways of organising data. What is still missing is a good way of handling large quantities of strings and arrays. MATLAB offers ways to package data in useful ways. Arguably the most useful are \textbf{structures}. So what's a structure? A structure is a data type that can store arbitrary numbers of other data types within it. Let's define a structure with three fields:
+
+\begin{lstlisting}
+myStruct.bobTheString='Flies like a banana';
+myStruct.myArray=randn(50);
+myStruct.aNumber=1.141;
+\end{lstlisting}
+
+We can now access these fields by name and do stuff with the data they contain. 
+\begin{lstlisting}
+myStruct.aNumber * 10 %this will return 11.41
+strfind(myStruct.bobTheString,'like') %returns the starting index of "like"
+myStruct.aNumber * myStruct.myArray
+\end{lstlisting}
+
+In addition there is nothing stopping you from having multi-dimensional structures or placing a structure within a structure:
+
+\begin{lstlisting}
+A(1,1).B=1;
+A(1,2).B=20; 
+A(2,2).B=200;
+size(A) %reports that A is of size 2 by 2
+\end{lstlisting}
+
+
+\pagebreak
+
+
+\section*{Control structures}
+
+
+
+\subsection*{Conditional expressions}
+\verb|Conditional expressions| are really important since they allow you to add logic to a function or script. From now on we're going to be typing in more and more of our code into functions rather than into the command line. You should be typing the following examples into files and running the files in the manner shown previously. Let's start off with a very simple conditional expression involving an \mcode{if} statement. 
+
+\begin{lstlisting}
+function myFunction
+	if (1==1)
+	  disp('This runs')
+	end
+\end{lstlisting}
+
+Type the above into a function and run it. Now try:
+\begin{lstlisting}
+function myFunction
+	if (1==2)
+	  disp('This does not run')
+	end
+	disp('But this does run')
+\end{lstlisting}
+
+I think you can see what's going on. The \mcode{==} means `is equal to'\footnote{A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}. Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test. 
+}. Try typing \mcode{1==1} and then \mcode{1==2} into the command line. What do you see? Those commands return a logical value: 0 or 1. Thus, the following is legal MATLAB code:
+\begin{lstlisting}
+function myFunction
+	if (0)
+	  disp('This does not run')
+	end
+	if (1)
+	  disp('But this does run')
+    end
+\end{lstlisting}
+
+In the previous example we have two if statements one after the other. There is a way that we can link them and produce more elegant code:
+\begin{lstlisting}
+function myFunction
+    T=1;
+	if (T)
+	  disp('This will run')
+	else
+	  disp('But this does not run')
+    end
+\end{lstlisting}
+
+You can even go one step further:
+
+\begin{lstlisting}
+function myFunction
+    T=10;
+	if (T==10)
+	  disp('This will run')
+	elseif (T<5)
+	  disp('But this does not run')
+    else
+       %Something else
+    end
+\end{lstlisting}
+
+
+%the find() command, switch statements
+
+\pagebreak
+\subsection*{While loops}
+A \mcode{while} loop is a way of repeating code many times. It is a form of `control structure'. Often \mcode{while} loops are used when the number of times the loop is to be repeated is not known in advance. Go read the MATALB help on \mcode{while} loops. Here are two quick examples:
+\begin{lstlisting}
+%The following while loop executes infinitely many times. 
+%Use ctrl-c to break out of it.
+ while (1)
+  %some code
+ end
+
+%The following keeps executing as long as the random number generator
+%produces a number less than 0.9
+  ii=1; 
+  while(rand<0.9)
+     fprintf('%d times through the loop\n',ii)
+     ii=ii+1; 
+  end
+\end{lstlisting}
+
+Type that second loop into a function file and play with it. Modify it so it runs until the random number is over 0.95. Modify the string it prints so that it says something else. Read about the \mcode{fprintf} command: it's very useful!
+
+\subsection*{For loops}
+\mcode{for} loops are another loop type. They are used when the number of repetitions is known in advance. This is the syntax:
+\begin{lstlisting}
+%one example
+for ii=1:10
+ disp(ii)
+end
+
+%another example
+for ii=1:10:100
+ disp(ii)
+end
+\end{lstlisting}
+
+You can nest for loops:
+\begin{lstlisting}
+for ii=1:20:100
+  for jj=1:5
+    fprintf('ii is %d and jj is %d\n',ii,jj)
+  end
+end
+\end{lstlisting}
+
+%In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations. 
+
+
+\subsection*{Exercises}
+\begin{enumerate}
+
+\item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20. 
+Use the \mcode{unique} command to confirm that you have values from 0 to 20 and no others. Use the \mcode{hist} command to make a histogram of the distribution. Plot the histogram with 21 bins, since you have that many unique numbers. Does it look like a uniform distribution? Replace \mcode{round} with \mcode{ceil} and repeat. Is it uniform now? 
+
+\item Using the random vector you generated in the previous exercise, apply the \mcode{find} command and the \mcode{length} command to count the number of times the number 10 occurred. Does this number match what the histogram showed?
+
+\item Repeat the previous exercise (ignoring the histogram) and count how many times a number less than or equal to two occurred. Repeat again and count the number of times a number less than or equal to three occurred. Now write a \mcode{for} loop that performs this count for all numbers between 1 and 20 (which are the unique numbers in the vector).
+
+\item Build a structure containing three fields: a 1 by 30 random data vector, r, and two strings (x and y).  e.g.
+\begin{lstlisting}
+S.r=randn(1,30);
+S.y='Y string';
+S.x='X string';
+\end{lstlisting}
+
+
+make and array of 1 by 4 such structures. Use these to make 4 subplots. The vector is plotted. The two strings are the x and y labels for each plot. Use a loop.
+
+\item You have already learned about \mcode{if} statements involving the \mcode{==} operator. Go to the MATLAB help and learn about these related operators: \mcode{<}, \mcode{>}, \mcode{!=}, \mcode{>=}, and \mcode{<=}. Make sure you are comfortable with using all of them. Modify the \mcode{if} examples above to try out these other logic operators. 
+
+\item Go to the MATLAB help and learn about the AND and OR operators (\mcode{&} and \mcode{\|}). Write a function with two input arguments (e.g. \mcode{myFunction(arg1,arg1)}) which will be single numbers. Use \mcode{if} statements along with the AND and OR operators to achieve the following: 1. Execute a block of code if either \mcode{arg1} or \mcode{arg2} is greater than 10.  2. Execute a block of code if both \mcode{arg1} and \mcode{arg2} are greater than 10. 
+
+\item Write a function with an \mcode{if}/\mcode{elseif}/\mcode{else} statement and one input argument. Use the \mcode{isnumeric} and \mcode{ischar} functions to conditionally execute different blocks of code depending on whether the input argument was a number, a string, or something else. What type of input would you need to have the function execute the final \mcode{else} statement? i.e. neither a numeric or string input would (or should) cause this final code block to execute. 
+
+\item Modify the random number while loop so it runs until the random number generator has produced two numbers over 0.8. Modify it again so it only breaks the loop if these two numbers are produced one after the other in succession. 
+
+\item Build a 9 by 10 array. Plot this in an array of 3 by 3 subplots. Each subplot contains data from one row of the matrix. (Hint: array indexing). Waveforms should be red lines with no symbols. Add a green circle at the maximum value of each plot. (Hint: help max)
+
+\item Modify the previous exercise so that all sub-plots have the same scale. 
+
+\item Modify the previous exercise, using \mcode{if} to add the label `X' to the bottom row of subplots only. 
+
+\item Write a function that takes as arguments two strings. Have the function print `SAME!' to the command line code if both strings are the same. Once you've done that,  modify your function so that it prints `String A contains String B' if (you guessed it) string A contains string B. Hint: \mcode{isempty}
+
+\end{enumerate}
+
+
+\end{document}
