@@ -180,7 +180,7 @@ Some function can have optional inputs.
 A good example is the \mcode{round} function.
 Check its documentation using \mcode{help} to understand the difference between the following lines:
 \begin{lstlisting}
-clear         % remove all variables
+clear  % remove all variables
 x = 4568.12;
 r1 = round(x);
 r2 = round(x, 0);
@@ -196,9 +196,9 @@ Congratulations, you've now learned the basics of entering information into the 
 
 A MATLAB \textbf{function} is just a text file that contains MATLAB code.
 You will write them in the MATLAB editor and save them to disk.
-After they've been saved, you will be able to use (or `run' or `call') the function from the command line in the same way as you did with the functions above.
+After they've been saved, you will be able to use (or ``run'' or ``call'') the function from the command line in the same way as you did with the functions above.
 
-Open a new file (`New' up at the top left of the GUI). \todo{add a figure?}
+Open a new file (\emph{New} up at the top left of the GUI). \todo{add a figure?}
 Save the file to the current directory and call it \verb|adder.m|.
 The current directory is displayed up at the top. \todo{add figure?}
 Type the following into your file in the editor and save it:
@@ -213,7 +213,7 @@ The function name, and possible inputs/outputs, are written after \mcode{functio
 Here there is no input nor output to this function.
 
 Use the function by typing \mcode{adder} into the command line and check defined variables in the \textbf{workspace} panel. What do you see?
-Notice how the variables defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
+Notice how the variables \mcode{myVariable} and \mcode{myOtherVariable} defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
 
 This fact is called \textbf{scope}.
 The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function.
