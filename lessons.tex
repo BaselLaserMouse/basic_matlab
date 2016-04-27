@@ -1,7 +1,6 @@
 \documentclass{article}
 
-
-%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{todonotes}
 \usepackage[framed,numbered,autolinebreaks]{mcode}
 \usepackage{fullpage}
 \usepackage{url,textcomp}
@@ -22,138 +21,241 @@
 
 \section*{Introduction}
 
-MATLAB is a fairly simple programming language designed to make analysis of data easy. It is commonly used in 
-academic research, industry, and finance. It is used across scientific disciplines, from biologists to engineers.
-During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, acquire new action 
-potential data with electrodes, and analyse these data. Today you will learn the basics of MATLAB.
+MATLAB is a fairly simple programming language designed to make analysis of data easy.
+It is commonly used in academic research, industry, and finance.
+It is used across scientific disciplines, from biologists to engineers.
+During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, acquire new action potential data with electrodes, and analyse these data.
+Today you will learn the basics of MATLAB.
+
+MATLAB stores data in \textbf{variables} and these variables are manipulated by \textbf{functions}.
+There are simple functions for performing tasks such as multiplication and division.
+There are also more complex functions for doing things such as calculating averages, fitting lines, and doing statistical tests.
+Today you will learn the basic functions in MATLAB as well as how to chain these together using \textbf{loops} and \textbf{logic statements} to automate sequences of operations.
+This is the basis of programming.
+
+As you proceed you will doubtless get stuck.
+For help you should use the MATLAB documentation that is built-in, Google, and ask for assistance.
 
 
-MATLAB stores data in \textbf{variables} and these variables. Variables are manipulated by \textbf{functions}.
-There are simple functions for performing tasks such as multiplication and division. There are also more 
-complex functions for doing things such as calculating averages, fitting lines, and doing statistical tests.
-Today you will learn the basic functions in MATLAB as well as how to chain these together using \textbf{loops}
-and \textbf{logic statements} to automate sequences of operations. This is the basis of programming. 
+\section{Starting MATLAB}
 
-As you proceed you will doubtless get stuck. For help you should use the MATLAB documentation that is built-in, 
-Google, and ask for assistance. 
+\todo[inline]{Start MATLAB from the Windows start menu.}
+\todo[inline]{Add section on navigating the command line window, opening an m-file, and the system path.}
+\todo[inline]{Describe the ribbon.}
 
 
+\section{Working at the command line}
 
-\pagebreak
+We will begin by treating MATLAB as a graphical calculator.
+We will start off at the \textbf{command line}, where you see the \verb|>>| symbol.
+You type commands in the space after the \verb|>>| symbol.
 
-\section*{Before we begin}
-
-Start MATLAB from the Windows start menu. 
-
-Add section on navigating the command line window, opening an m-file, and the system path.
-
-Describe the ribbon. 
-
-
-\pagebreak
-\section*{One: data types and basic plotting}
-
-\subsection*{Working at the command line with simple variables}
-We will begin by treating MATLAB as a graphical calculator. We'll see how to define simple variables, how to manipulate them, 
-and how to plot them. We will start off doing these things at the \verb|command line|, where you see the \verb|>>| symbol. You type
-commands in the space after the \verb|>>|
-
-Type the following into the command line: \\
-\verb|>>| \mcode{\%This is a comment} \\
-then press return. \\
-Nothing happened! Any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't interpreted by MATLAB. When you start writing
-your own functions (i.e. MATLAB code stored in a text file) you should be using comments all the time to make your code easier to read at a later time. 
-You will also see comments in files we give you. 
-
-Now try typing a number, e.g. \\
+Take a deep breath and type a number into the command line, e.g. \\
 \verb|>>| \mcode{1} \\
+then press return.\todo{enter?} \\
 See how it echoes the number back to you? Now type: \\
-\verb|>>| \mcode{1;} \\ 
-Note the presence of the \mcode{;} symbol. See how it no longer echoes the number back to you? The \mcode{;} suppresses the echo. You will use this feature a lot so keep it in mind. 
+\verb|>>| \mcode{1;} \\
+Note the presence of the \mcode{;} symbol.
+See how it no longer echoes the number back to you?
+The \mcode{;} suppresses the echo.
+You will use this feature a lot so keep it in mind.
 
-Let's create some variables. Variables are assigned with the \mcode{=} (equals) operator. Type the following into the command line. You don't need to type the 
-comments, those are just to explain what is going on. 
+\todo[inline]{positive/negative numbers, scientific notation}
 
-
+Now let's look at basic arithmetic operators. \todo{floating point values? negative values?}
+Type the following into the command line (note we leave off the semicolon so you can see the output):
 \begin{lstlisting}
-t=1   %assign the number 1 to a variable called t;
-whos  %view the workspace
-r=10.5;  %Create another variable. Note lack of echoeing
-A=r    %assigning one variable to another
-whos   %view the workspace again
+4 + 10
+4 - 10
+4 * 10
+4 / 10
+4^3
+\end{lstlisting}
+What does the last line \mcode{4^3} do?
+
+Of course you can use several operators in the same line, but be careful with their priority.
+You can force the order of the operations using parentheses.
+Compare the results from the following lines:
+\begin{lstlisting}
+4 + 2 * 3 - 1
+(4 + 2) * 3 - 1
+(4 + 2) * (3 - 1)
 \end{lstlisting}
 
-Now let's look at basic arithmetic operators. Type the following into the command line (note we leave off the semicolon so you can see the output):
+To conclude this first part, enter the following into the command line: \\
+\verb|>>| \mcode{\%This is a comment} \\
+After pressing enter, nothing should have happened.
+Indeed, any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't executed by MATLAB.
+We will use these comments to provide additional information to you.
+
+
+\section{Manipulating simple variables}
+
+A variable is a mechanism to keep track of a value with a name.
+Variables are assigned with the \mcode{=} (equals) operator.
+The name of a variable is on the left of \mcode{=} and the value on the right, e.g.\\
+\verb|>> myvariable = 12|
+
+Type the following into the command line.
+Remember, you don't need to type the comments, those are just to explain what is going on.
 \begin{lstlisting}
-t=2;
-T=t+10 %addition
-T=t-10 %subtraction
-T=t*2  %multiplication
-T=t/10 %division
-T=t^3  %raising to the third power
+t = 1      % assign the number 1 to a variable called t
+r = 10.5;  % create another variable (note lack of echoing)
+a = r      % assigning one variable to another
+a          % display the value of the variable
 \end{lstlisting}
 
+If you assign several times values to the same variable, values are replaced in turns.
+\begin{lstlisting}
+t = 2  % previous value replaced by 2
+t = 3  % value 2 replaced by 3
+\end{lstlisting}
 
-Try typing \mcode{whos} and you see the variables in your workspace. Type \mcode{clear T}. Re-type \mcode{whos}, what happened? Type \mcode{clear all} then \mcode{whos}. What's happened now? You've now learned the basics of entering information into the command-line. 
+You can use variables in place of values for arithmetic operations.
+Type the following in the command line:
+\begin{lstlisting}
+t = 2;
+T = t + 10  % addition
+T = t - 10  % subtraction
+T = t * 2   % multiplication
+T = t / 10  % division
+T = t^3     % raising to the third power
+\end{lstlisting}
+
+By the way, what is the final value of \mcode{T}? and \mcode{t}?
+Be careful, variables names are case sensitive, so \mcode{T} and \mcode{t} are different variables!
+\todo{talk about fine names for variables?}
+
+If you want to know about the currently used variables, have a look to the \textbf{workspace} panel.
+There you will see names and values of your variables.
+So far, we have only been manipulating numbers, aka scalar values in MATLAB parlance.
+We will see later more advanced types like arrays and strings (sequence of characters).
+
+Sometimes, one may want to delete a variable, because it is not used anymore and use a lot of memory.
+To do so, you will use the \mcode{clear} command.
+Type the following in the command line and check how the \textbf{workspace} panel changes:
+\begin{lstlisting}
+clear    % remove all variables
+a = 3    % new variable
+b = 4    % new variable
+clear a  % remove one variable
+c = a    % assign a variable to another one and... surprise!
+\end{lstlisting}
+What happened at last line? Keep in mind that a variable need to exist in order to be used.
 
 
-\subsection*{Working at the command line with functions}
-You will now learn to run a built-in MATLAB function from the command line. Type \mcode{rand} into the command line and press return. What happened? Do it again a few more times. What happened. What do you think the \mcode{rand} command does? Type \mcode{help rand} to see the help text for the \mcode{rand} function. Type \mcode{doc rand} to get this in GUI form. Read the help text to understand how the inputs to function work. 
+\section{Using MATLAB functions}
 
-Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology. 
+So far, you were limited to basic arithmetic.
+What if you want to do more advanced math? or control a little bit the interface?
+For these cases, MATLAB provides a huge number of functions to do all sort of operations.
 
+To use a function, you need to type its name.
+In the command line, try typing \mcode{clc} and see what happens.
 
+If you want to now more about this function, you can use \mcode{help} command as follows: \\
+\verb|>> help clc| \\
+You can also use \mcode{doc} command to get an extended help, typing \mcode{doc clc}.
 
-\subsection*{Writing your own functions}
-A MATLAB \textbf{function} is just a text file that contains MATLAB code. You will write them in the MATLAB editor and save them to disk. 
-After they've been saved, you will be able to run (or `call') the function from the command line in the same way as you did with the 
-\mcode{rand} command, above. 
+A function can have inputs and outputs.
+Inputs are enclosed in parenthesis, after the function name, and separated by commas.
+You get back the output(s) using variable assignment.
 
-Open a new file (`New' up at the top left of the GUI). Save the file to the current directory and call it \verb|adder.m| 
-The current directory is displayed up at the top or reported by typing \mcode{pwd} at the command line. Type the following into
-your file in the editor and save it:
+Give a try with the \mcode{cos} function (cosine of an angle), typing the following:
+\begin{lstlisting}
+clear         % remove all previously defined variables
+cos(3.14)     % cosine of Pi
+x = 3.14;     % create a new variable (no echoing)
+cos(x)        % cosine of the value of x
+y = cos(x);   % assign the result to a variable (no echoing)
+\end{lstlisting}
 
+What about a function that takes several inputs?
+Have a look to \mcode{rem} function, using \mcode{help} or \mcode{doc} command.
+Use this function to compute the remainder after division of 823 by 11.
+
+Some function can have optional inputs.
+A good example is the \mcode{round} function.
+Check its documentation using \mcode{help} to understand the difference between the following lines:
+\begin{lstlisting}
+clear         % remove all variables
+x = 4568.12;
+r1 = round(x);
+r2 = round(x, 0);
+r3 = round(x, -2);
+\end{lstlisting}
+What are the values in variables \mcode{r1}, \mcode{r2} and \mcode{r3} at the end?
+
+You've now learned the basics of entering information into the command-line.
+\todo{multiple outputs functions, key/value interface using strings?}
+\todo{add a example with mod}
+
+\section{Writing your own functions}
+
+A MATLAB \textbf{function} is just a text file that contains MATLAB code.
+You will write them in the MATLAB editor and save them to disk. 
+After they've been saved, you will be able to use (or `run' or `call') the function from the command line in the same way as you did with the functions above. 
+
+Open a new file (`New' up at the top left of the GUI). \todo{add a figure?}
+Save the file to the current directory and call it \verb|adder.m|.
+The current directory is displayed up at the top. \todo{add figure?}
+Type the following into your file in the editor and save it:
 \begin{lstlisting}
 function adder
-
-  myVariable=99;
-  myOtherVariable=101;
+  myVariable = 99;
+  myOtherVariable = 101;
+end
 \end{lstlisting}
+A function definition file always start with \mcode{function} keyword, and end with \mcode{end} keyword.
+The function name, and possible inputs/outputs, are written after \mcode{function}.
+Here there is no input nor output to this function.
 
-Run the function by typing its name into the command line. What happened? Like before type \mcode{whos} into the command line. 
-What do you see? Notice how the variables defined in the \mcode{adder} function are not present in the \textbf{base workspace}. 
-i.e. the variables available to you in the command line. This fact is called `\textbf{scope}'. The variables in your \mcode{adder} 
-function exist only in the scope of the \mcode{adder} function. They are created when \mcode{adder} runs and they are cleaned 
-up when it ends. This is a very important programming concept and you should keep it in mind.
+According to you, what will happen when using this function?
+Run the function by typing its name into the command line and check defined variables in the \textbf{workspace} panel. What do you see?
 
-Let's make \mcode{adder} \textit{do} something and return information to the command line. We will feed it an 
-\textbf{argument} and have it multiply this by 2 then subtract 1. Finally it will return the result to  the workspace. 
+Notice how the variables defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
+This fact is called \textbf{scope}.
+The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function.
+They are created when \mcode{adder} runs and they are cleaned up when it ends.
+This is a very important programming concept and you should keep it in mind.
+
+Let's make \mcode{adder} \emph{do} something useful and return information to the command line.
+We will define a \textbf{parameter} (input variable \mcode{varIN}) and have it multiply this by 2 then subtract 1.
+Finally it will return the result to the workspace (output variable \mcode{OUT}).
 Modify \mcode{adder} so that it reads as follows, then save it.
-
 \begin{lstlisting}
 function OUT = adder(varIN)
   % the adder function multiplies by 2 then subtracts 1
-  OUT = varIN * 2 - 1;
-
+  doubledIN = varIN * 2;
+  OUT = doubledIN - 1;
+end
 \end{lstlisting}
 
-At the command line you will type, for example: \mcode{A=myFile(34)} Then type \mcode{whos} See what's happened? It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
+At the command line you will type, for example: \mcode{A = adder(34)}.
+Check in the \textbf{workspace} panel the existing variables.
+Is there any variable from the function (\mcode{varIN}, \mcode{doubledIN} or \mcode{OUT})?
+It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
+
+Notice the second line full of human readable words?
+This line of comments is not used by MATLAB to compute the result but documents what is happening in the function.
+When you start writing your own functions you should be using comments all the time to make your code easier to read at a later time.
 
 
-%learn about round() and mod()
+\section{Manipulating multi-dimensional arrays}
 
-\pagebreak
+So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors} and  \textbf{matrices}.
+
 \subsection*{Vectors and indexing}
-So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors} and 
-\textbf{matrices}. A vector is just a list (one row or one column) of numbers. Let's learn how to create and manipulate these. Type
-the following into the command line.
 
+A vector is just a list (one row or one column) of numbers.
+Let's learn how to create and manipulate these.
+Type the following into the command line.
 \begin{lstlisting}
-[1,20,30,40,500,1000]  %This makes a vector
-t=[1,20,30,40,500,1000] %Assign vector to a variable
+[1,20,30,40,500,1000]      % make a vector
+t = [1,20,30,40,500,1000]  % assign vector to a variable
 \end{lstlisting}
 
-You will now learn how to `\textbf{index}' the vector. Indexing is \textit{very important}. Basically, `indexing`
+You will now learn how to \textbf{index} the vector. Indexing is \textit{very important}. Basically, `indexing`
 is the process of accessing sub-portions of the vector. Go through the following at the command line. If any of it
 does not make sense you should ask someone for help. 
 \begin{lstlisting}
@@ -197,7 +299,6 @@ t=1:3:30;
 t*10 %This is called scalar expansion
 \end{lstlisting}
 
-\pagebreak
 
 \subsection*{Arrays}
 A vector has one dimension, whereas an \textbf{array} (a matrix) has two or more dimensions. 
@@ -207,7 +308,6 @@ for the rows and columns of pixels in the image and the third dimension is time.
 voltage traces from an electrical recording of neuronal activity. 
 
 In the following exercise you will learn how to make a matrix `by hand` and how to index it.
-
 
 \begin{lstlisting}
 t=[1,2,3,90; 4,5,6,90] %make an array with two rows and four columns 
@@ -239,7 +339,9 @@ for help. The purpose of this question is to teach you how to read the help text
 
 You have now learned to create and index vectors and arrays. 
 
-\pagebreak
+
+\section{Making shiny graphs for your data}
+
 \subsection*{Basic plotting of vector data}
 You will now learn to plot vectors and arrays of random numbers. Line and point data are plotted to screen
 with the \mcode{plot} command. Open the doc page for the \mcode{plot} command. Read the \textbf{Description} and
@@ -275,75 +377,12 @@ Don't forget the semicolon.
 \item SHOULD WE TEACH \mcode{hold on} and \mcode{hold off}?
 \end{itemize}
 
-
-\pagebreak
 \subsection*{Basic plotting of array (image) data}
 \textbf{Extend all this to images with \mcode{imagesc}.}
 
 
+\section{Conditional execution with \emph{if\dots else} statement}
 
-\pagebreak
-\section*{Non-numeric data and complex data structures} 
-\textbf{WE SHOULD REMOVE AS MUCH OF THIS AS POSSIBLE}
-
-\subsection*{Strings}
-A string in MATLAB is a vector of characters. We can define a string easily enough: 
-\begin{lstlisting}
-myStr='This is a string'; %just use single quotes to define a string
-%Strings follow the same indexing rules as numeric vectors:
-myStr(1:4) %returns "This" to the command line
-\end{lstlisting}
-
-Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another. 
-
-As you might expect, MATLAB has a load of functions to deal with strings. Let's look at two of them now. \mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string. Here are examples:
-
-\begin{lstlisting}
-A='a string';
-B='some other string';
-C='a string';
-strcmp(A,B) %returns 0, indicating that this comparison is false
-strcmp(A,C) %returns 1, indicating that this comparison is Turner
-
-strfind(A,'string') %returns 3, why is that?
-strfind(A,'String') %returns an empty array, why is that?
-\end{lstlisting}
-
-
-\subsection*{Complex data types}
-We've so far covered numeric data and shown how they're stored in arrays, and we've also covered strings. It would seem that we've got our bases covered: now we can work with both numbers and text. What else is there? It turns out there is something missing: strings and arrays aren't very good ways of organising data. What is still missing is a good way of handling large quantities of strings and arrays. MATLAB offers ways to package data in useful ways. Arguably the most useful are \textbf{structures}. So what's a structure? A structure is a data type that can store arbitrary numbers of other data types within it. Let's define a structure with three fields:
-
-\begin{lstlisting}
-myStruct.bobTheString='Flies like a banana';
-myStruct.myArray=randn(50);
-myStruct.aNumber=1.141;
-\end{lstlisting}
-
-We can now access these fields by name and do stuff with the data they contain. 
-\begin{lstlisting}
-myStruct.aNumber * 10 %this will return 11.41
-strfind(myStruct.bobTheString,'like') %returns the starting index of "like"
-myStruct.aNumber * myStruct.myArray
-\end{lstlisting}
-
-In addition there is nothing stopping you from having multi-dimensional structures or placing a structure within a structure:
-
-\begin{lstlisting}
-A(1,1).B=1;
-A(1,2).B=20; 
-A(2,2).B=200;
-size(A) %reports that A is of size 2 by 2
-\end{lstlisting}
-
-
-\pagebreak
-
-
-\section*{Control structures}
-
-
-
-\subsection*{Conditional expressions}
 \verb|Conditional expressions| are really important since they allow you to add logic to a function or script. From now on we're going to be typing in more and more of our code into functions rather than into the command line. You should be typing the following examples into files and running the files in the manner shown previously. Let's start off with a very simple conditional expression involving an \mcode{if} statement. 
 
 \begin{lstlisting}
@@ -402,28 +441,9 @@ function myFunction
 
 %the find() command, switch statements
 
-\pagebreak
-\subsection*{While loops}
-A \mcode{while} loop is a way of repeating code many times. It is a form of `control structure'. Often \mcode{while} loops are used when the number of times the loop is to be repeated is not known in advance. Go read the MATALB help on \mcode{while} loops. Here are two quick examples:
-\begin{lstlisting}
-%The following while loop executes infinitely many times. 
-%Use ctrl-c to break out of it.
- while (1)
-  %some code
- end
 
-%The following keeps executing as long as the random number generator
-%produces a number less than 0.9
-  ii=1; 
-  while(rand<0.9)
-     fprintf('%d times through the loop\n',ii)
-     ii=ii+1; 
-  end
-\end{lstlisting}
+\section{Repeating operations with \emph{for} loop}
 
-Type that second loop into a function file and play with it. Modify it so it runs until the random number is over 0.95. Modify the string it prints so that it says something else. Read about the \mcode{fprintf} command: it's very useful!
-
-\subsection*{For loops}
 \mcode{for} loops are another loop type. They are used when the number of repetitions is known in advance. This is the syntax:
 \begin{lstlisting}
 %one example
@@ -449,7 +469,48 @@ end
 %In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations. 
 
 
-\subsection*{Exercises}
+\section{(Bonus) Manipulating text: string variables}
+
+A string in MATLAB is a vector of characters. We can define a string easily enough: 
+\begin{lstlisting}
+myStr='This is a string'; %just use single quotes to define a string
+%Strings follow the same indexing rules as numeric vectors:
+myStr(1:4) %returns "This" to the command line
+\end{lstlisting}
+
+Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another. 
+
+As you might expect, MATLAB has a load of functions to deal with strings. Let's look at two of them now. \mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string. Here are examples:
+
+\begin{lstlisting}
+A='a string';
+B='some other string';
+C='a string';
+strcmp(A,B) %returns 0, indicating that this comparison is false
+strcmp(A,C) %returns 1, indicating that this comparison is Turner
+
+strfind(A,'string') %returns 3, why is that?
+strfind(A,'String') %returns an empty array, why is that?
+\end{lstlisting}
+
+
+\section{(Bonus) The debugger might be your best friend}
+
+
+
+\pagebreak
+
+
+Type \mcode{rand} into the command line and press return. What happened?
+Do it again a few more times. What happened?
+What do you think the \mcode{rand} command does?
+Type \mcode{help rand} to see the help text for the \mcode{rand} function.
+Type \mcode{doc rand} to get this in GUI form.
+Read the help text to understand how the inputs to function work. 
+
+Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology. 
+
+\section*{Exercises}
 \begin{enumerate}
 
 \item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20. 
