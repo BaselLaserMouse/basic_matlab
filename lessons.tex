@@ -8,12 +8,14 @@
 \setlength{\parskip}{18pt}
 \title{MATLAB Introduction}
 \author{Rob Campbell \& Maxime Rio}
+\date{}
 % //////////////////////////////////////////////////
 
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{helvet}
 \usepackage[compact]{titlesec} 
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
+
 \begin{document}
 
 \maketitle
@@ -274,6 +276,7 @@ Indexing is \textit{very important}.
 Basically, ``indexing'' is the process of accessing sub-portions of the vector.
 Go through the following at the command line.
 If any of it does not make sense you should ask someone for help.
+\todo{logical indexing, linear indexing, \mcode{find} function?}
 \begin{lstlisting}
 t = [1, 10, 20,30, 40, 500, 1000]
 t(1)        % access first element of vector
@@ -284,7 +287,6 @@ t(idx)      % use a variable (containing a range)
 t(end)      % access to the last element
 t(1:2:end)  % access elements at odd indices
 \end{lstlisting}
-\todo{logical indexing, linear indexing?}
 
 To check the actual size of a vector, you can use \mcode{length}, \mcode{size} or \mcode{numel} functions.
 Try all three functions on the \mcode{t} variable. What is the difference?
@@ -316,6 +318,9 @@ size(t)
 Try \mcode{numel} and \mcode{length} functions on this matrix.
 What's different from vector case?
 
+To create arrays of zeros or ones, you can use \mcode{zeros} and \mcode{ones} functions.
+Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 matrix of zeros and a vector of 5 ones.
+
 Now you will learn how to index an array.
 It is very similar to indexing vectors, except that there are several dimensions:
 \begin{lstlisting}
@@ -326,18 +331,13 @@ t(:, 2)      % all lines, second column
 \end{lstlisting}
 The \mcode{:} (colon) operator is used to index a whole dimension.
 
-\subsection*{Usual array operations}
-
 Arithmetic still works with arrays and scalars, e.g. you can easily add, subtract, multiply, etc. all elements of an array by a scalar.
 Try the following:
 \begin{lstlisting}
 t = [1,2,3; 4,5,6]  % 2 by 3 matrix
 a = 10              % scalar variable
-t*10                % element-wise multiplication (aka scalar expansion)
+t*10                % element-wise multiplication, using scalar expansion
 \end{lstlisting}
-
-To create arrays of zeros or ones, you will use \mcode{zeros} and \mcode{ones} functions.
-Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 matrix of zeros and a vector of 5 ones.
 
 You have now learned to create, index and do some computations with vectors and arrays.
 \todo{min, max, mean, std, etc?}
@@ -345,67 +345,89 @@ You have now learned to create, index and do some computations with vectors and 
 
 \section{Making shiny graphs for your data}
 
+A large part of an analysis consists in summarizing your results.
+Making good graphs is one of the best ways to give a quick and clear view of your results.
+
 \subsection*{Basic plotting of vector data}
-You will now learn to plot vectors and arrays of random numbers. Line and point data are plotted to screen
-with the \mcode{plot} command. Open the doc page for the \mcode{plot} command. Read the \textbf{Description} and
-\textbf{Example} sections. You will need to understand this information to complete the following exercises
+
+You will now learn to plot vectors and arrays of random numbers.
+Line and point data are plotted to screen with the \mcode{plot} command.
+
+Open the doc page for the \mcode{plot} command.
+Read the \textbf{Description} and \textbf{Example} sections.
+You will need to understand this information to complete the following exercise.
+
+From now on we're going to be typing in more and more of our code into functions rather than into the command line.
+You should be typing the following examples into files and running the files in the manner shown previously.
+
 
 \begin{itemize}
 \item Create a new function called \mcode{testPlot}. It should look like this to begin with, then you will fill it in:
 \begin{lstlisting}
 function testPlot
-% exercise function
-clf %clears the current figure
+  % exercise function
+  figure;         % create a new figure
+  subplot(2,2,1)  % make subplot axix in top left
 
-subplot(2,2,1) %make subplot axix in top left
+  subplot(2,2,2)  % make subplot axis in top right
 
-subplot(2,2,2) %make subplot axis in top right
+  subplot(2,2,3)  % make subplot axis in bottom left
 
-subplot(2,2,3) %make subplot axis in bottom left
+  subplot(2,2,4)  % make subplot axis in bottom right
 
-subplot(2,2,4) %make subplot axis in bottom right
-
+end
 \end{lstlisting}
 
-\item Run the above. You should get a figure window with four empty sub-plots. Do not proceed until you have this.
-
-\item Within your function, add a line that makes a \textbf{vector} of 100 random numbers and stores this in a variable called R.
-Don't forget the semicolon.
-\item Add a line of code below the first \mcode{subplot} command to plot the variable R as a default line plot using the \mcode{plot} function.
-\item Add a line of code below the second \mcode{subplot} command to plot the variable R as a red line.
-\item Add a line of code below the third \mcode{subplot} command to plot the variable R as a thicker red line.
-\item Add a line of code below the fourth \mcode{subplot} command to plot the variable R as \textbf{red circles} not linked by a line.
+\item Run the above. You should get a figure window with four empty sub-plots.
+  Do not proceed until you have this.
+\item Within your function, add a line that makes a \textbf{vector} of 100 random numbers and stores this in a variable called \mcode{R}.
+  Don't forget the semicolon.
+\item Add a line of code below the first \mcode{subplot} command to plot the variable \mcode{R} as a default line plot using the \mcode{plot} function.
+\item Add a line of code below the second \mcode{subplot} command to plot the variable \mcode{R} as a red line.
+\item Add a line of code below the third \mcode{subplot} command to plot the variable \mcode{R} as a thicker red line.
+\item Add a line of code below the fourth \mcode{subplot} command to plot the variable \mcode{R} as \textbf{red circles} not linked by a line.
 \item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers.
-\item SAVE THE RESULTING PLOT (WE NEED TO DECIDE HOW THEY WILL DO THIS)
-\item SHOULD WE TEACH \mcode{hold on} and \mcode{hold off}?
+\item Save the figure as a .pnf file using \emph{File/Save As...} menu in the figure window.
 \end{itemize}
+\todo{\mcode{hold on} and \mcode{hold off}}
 
-\subsection*{Basic plotting of array (image) data}
-\textbf{Extend all this to images with \mcode{imagesc}.}
+\subsection*{Basic plotting of matrices (image) data}
+
+\todo[inline]{introduce \mcode{imagesc}}
 
 
-\section{Conditional execution with \emph{if\dots else} statement}
+\section{Conditional expressions with \emph{if\dots else} statement}
 
-\verb|Conditional expressions| are really important since they allow you to add logic to a function or script. From now on we're going to be typing in more and more of our code into functions rather than into the command line. You should be typing the following examples into files and running the files in the manner shown previously. Let's start off with a very simple conditional expression involving an \mcode{if} statement.
+\verb|Conditional expressions| are really important since they allow you to add logic to a function.
+Let's start off with a very simple conditional expression involving an \mcode{if} statement.
 
 \begin{lstlisting}
 function myFunction
-	if (1==1)
+	if 1 == 1
 	  disp('This runs')
 	end
+end
 \end{lstlisting}
 
 Type the above into a function and run it. Now try:
 \begin{lstlisting}
 function myFunction
-	if (1==2)
+	if 1 == 2
 	  disp('This does not run')
 	end
 	disp('But this does run')
+end
 \end{lstlisting}
 
-I think you can see what's going on. The \mcode{==} means `is equal to'\footnote{A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}. Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
-}. Try typing \mcode{1==1} and then \mcode{1==2} into the command line. What do you see? Those commands return a logical value: 0 or 1. Thus, the following is legal MATLAB code:
+I think you can see what's going on.
+The \mcode{==} means \emph{is equal to}%
+\footnote{%
+  A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}.
+  Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
+}.
+Try typing \mcode{1==1} and then \mcode{1==2} into the command line. What do you see?
+Those commands return a logical value: 0 or 1.
+Thus, the following is legal MATLAB code:
 \begin{lstlisting}
 function myFunction
 	if (0)
@@ -413,51 +435,51 @@ function myFunction
 	end
 	if (1)
 	  disp('But this does run')
-    end
+  end
+end
 \end{lstlisting}
 
-In the previous example we have two if statements one after the other. There is a way that we can link them and produce more elegant code:
+In the previous example we have two if statements one after the other.
+There is a way that we can link them and produce more elegant code:
 \begin{lstlisting}
 function myFunction
-    T=1;
+  T=1;
 	if (T)
 	  disp('This will run')
 	else
 	  disp('But this does not run')
-    end
+  end
+end
 \end{lstlisting}
 
 You can even go one step further:
-
 \begin{lstlisting}
 function myFunction
-    T=10;
+  T=10;
 	if (T==10)
 	  disp('This will run')
 	elseif (T<5)
 	  disp('But this does not run')
-    else
-       %Something else
-    end
+  else
+    %Something else
+  end
+end
 \end{lstlisting}
-
-
-%the find() command, switch statements
 
 
 \section{Repeating operations with \emph{for} loop}
 
 \mcode{for} loops are another loop type. They are used when the number of repetitions is known in advance. This is the syntax:
 \begin{lstlisting}
-%one example
-for ii=1:10
- disp(ii)
-end
+  %one example
+  for ii=1:10
+    disp(ii)
+  end
 
-%another example
-for ii=1:10:100
- disp(ii)
-end
+  %another example
+  for ii=1:10:100
+    disp(ii)
+  end
 \end{lstlisting}
 
 You can nest for loops:
@@ -476,24 +498,30 @@ end
 
 A string in MATLAB is a vector of characters. We can define a string easily enough:
 \begin{lstlisting}
-myStr='This is a string'; %just use single quotes to define a string
-%Strings follow the same indexing rules as numeric vectors:
-myStr(1:4) %returns "This" to the command line
+  myStr = 'This is a string';  % just use single quotes to define a string
+  % strings follow the same indexing rules as numeric vectors:
+  myStr(1:4) % returns "This" to the command line
 \end{lstlisting}
 
-Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another.
+Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'.
+Do you have any idea why \mcode{'1' * 10} doesn't return an error?
+Hint: the `1' is an ASCII character.
+You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer.
+MATLAB has many such `xxx2yyy' commands for converting one thing to another.
 
-As you might expect, MATLAB has a load of functions to deal with strings. Let's look at two of them now. \mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string. Here are examples:
-
+As you might expect, MATLAB has a load of functions to deal with strings.
+Let's look at two of them now.
+\mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string.
+Here are examples:
 \begin{lstlisting}
-A='a string';
-B='some other string';
-C='a string';
-strcmp(A,B) %returns 0, indicating that this comparison is false
-strcmp(A,C) %returns 1, indicating that this comparison is Turner
+  A='a string';
+  B='some other string';
+  C='a string';
+  strcmp(A,B)          % returns 0, indicating that this comparison is false
+  strcmp(A,C)          % returns 1, indicating that this comparison is Turner
 
-strfind(A,'string') %returns 3, why is that?
-strfind(A,'String') %returns an empty array, why is that?
+  strfind(A,'string')  % returns 3, why is that?
+  strfind(A,'String')  % returns an empty array, why is that?
 \end{lstlisting}
 
 
