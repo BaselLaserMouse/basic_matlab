@@ -12,7 +12,7 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{helvet}
-\usepackage[compact]{titlesec}  
+\usepackage[compact]{titlesec} 
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
 \begin{document}
 
@@ -193,8 +193,8 @@ You've now learned the basics of entering information into the command-line.
 \section{Writing your own functions}
 
 A MATLAB \textbf{function} is just a text file that contains MATLAB code.
-You will write them in the MATLAB editor and save them to disk. 
-After they've been saved, you will be able to use (or `run' or `call') the function from the command line in the same way as you did with the functions above. 
+You will write them in the MATLAB editor and save them to disk.
+After they've been saved, you will be able to use (or `run' or `call') the function from the command line in the same way as you did with the functions above.
 
 Open a new file (`New' up at the top left of the GUI). \todo{add a figure?}
 Save the file to the current directory and call it \verb|adder.m|.
@@ -243,7 +243,7 @@ When you start writing your own functions you should be using comments all the t
 
 \section{Manipulating multi-dimensional arrays}
 
-So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors} and  \textbf{matrices}.
+So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
 
 \subsection*{Vectors and indexing}
 
@@ -255,89 +255,92 @@ Type the following into the command line.
 t = [1,20,30,40,500,1000]  % assign vector to a variable
 \end{lstlisting}
 
-You will now learn how to \textbf{index} the vector. Indexing is \textit{very important}. Basically, `indexing`
-is the process of accessing sub-portions of the vector. Go through the following at the command line. If any of it
-does not make sense you should ask someone for help. 
+MATLAB provides convenient ways to create \textbf{ranges}, i.e. vectors of evenly spaced numbers.
+Try the following in the command line:
 \begin{lstlisting}
-t(1)  %Access first element of vector
-t(2)
-2:4  %Create a range of numbers
-t(2:4) %Use this idea to access a range of elements
+clear                % remove all variables
+t = 1:5              % shortcut for [1, 2, 3, 4, 5]
+t = 1:2:10           % shortcut for [1, 3, 5, 7, 9]
 
-%Therefore this works too:
-idx=2:4;
-t(idx)
+start = 20;
+step = 5;
+stop = 100;
+t = start:step:stop  % using variables instead of values
+\end{lstlisting}
+How would you create the vector \mcode{[5, 8, 11, 14]} using this syntax? What about \mcode{[-1, -2, -3, -4]}?
 
-t(end) %You can access the last element this way
-length(t) %The length command returns the vector length
+You will now learn how to \textbf{index} the vector.
+Indexing is \textit{very important}.
+Basically, ``indexing'' is the process of accessing sub-portions of the vector.
+Go through the following at the command line.
+If any of it does not make sense you should ask someone for help.
+\begin{lstlisting}
+t = [1, 10, 20,30, 40, 500, 1000]
+t(1)        % access first element of vector
+t([2, 3])   % access second and third elements
+t(2:4)      % use a range to access several elements
+idx = 2:4;
+t(idx)      % use a variable (containing a range)
+t(end)      % access to the last element
+t(1:2:end)  % access elements at odd indices
+\end{lstlisting}
+\todo{logical indexing, linear indexing?}
 
-%two ways accessing every other element
-t(1:2:length(t))
-t(1:2:end)
-%make sure you're happy with what, say, 1:2:10 does
+To check the actual size of a vector, you can use \mcode{length}, \mcode{size} or \mcode{numel} functions.
+Try all three functions on the \mcode{t} variable. What is the difference?
+Have a look to the documentation of these functions.
+
+The variable \mcode{t} is a row vector (1 row).
+You can turn it into a column vector (1 column) by transposing it, using a single quote \mcode{'}.
+Work through the following:
+\begin{lstlisting}
+size(t)    % size of the row vector
+t2 = t';   % transposing using a quote
+size(t2)   % size of the column vector
 \end{lstlisting}
 
-The variable \mcode{t} is a row vector. You can turn it into a column vector by transposing it. Work through the following:
 
+\subsection*{Matrices and other arrays}
+
+A vector has one dimension, whereas an \textbf{matrix} has two dimensions.
+An \textbf{array} is a more generic creature, with any number of dimensions, thus vectors and matrices are arrays.
+During this course you will handle 2-photon imaging data which are represented as a 3-D arrays.
+The first two dimensions for the rows and columns of pixels in the image and the third dimension is time.
+You will also handle vector data, such as voltage traces from an electrical recording of neuronal activity.
+
+In the following exercise you will learn how to make a matrix ``by hand'' and how to index it.
 \begin{lstlisting}
-t=1:3:30; %Assign vector to a variable
-length(t) %reports the length
-t' %see how we've transposed our variable
-t=t'; %to replace t with the transpose
-length(t) %the length is still the same. 
-
-%what's going on here? Read about the differences between size and length
+t = [1,2,3,90; 4,5,6,90] % make an array with two rows and four columns
 size(t)
-size(t')
-
 \end{lstlisting}
+Try \mcode{numel} and \mcode{length} functions on this matrix.
+What's different from vector case?
 
-Arithmetic still works with vectors. Try the following:
-
+Now you will learn how to index an array.
+It is very similar to indexing vectors, except that there are several dimensions:
 \begin{lstlisting}
-t=1:3:30; 
-t*10 %This is called scalar expansion
+t(1, 2)      % first line, second column
+t(1, [2,3])  % first line, second and thirs columns
+t(1, :)      % first line, all columns
+t(:, 2)      % all lines, second column
 \end{lstlisting}
+The \mcode{:} (colon) operator is used to index a whole dimension.
 
+\subsection*{Usual array operations}
 
-\subsection*{Arrays}
-A vector has one dimension, whereas an \textbf{array} (a matrix) has two or more dimensions. 
-Arrays can be two dimensional or they may have as many dimensions as you like. e.g. you can make cubes of numbers.
-During this course you will handle 2-photon imaging data which are represented as a 3-D matrix. The first two dimensions
-for the rows and columns of pixels in the image and the third dimension is time. You will also handle vector data, such as
-voltage traces from an electrical recording of neuronal activity. 
-
-In the following exercise you will learn how to make a matrix `by hand` and how to index it.
-
+Arithmetic still works with arrays and scalars, e.g. you can easily add, subtract, multiply, etc. all elements of an array by a scalar.
+Try the following:
 \begin{lstlisting}
-t=[1,2,3,90; 4,5,6,90] %make an array with two rows and four columns 
-
-%note the following. What is the length command reporting?
-size(t)
-length(t)
+t = [1,2,3; 4,5,6]  % 2 by 3 matrix
+a = 10              % scalar variable
+t*10                % element-wise multiplication (aka scalar expansion)
 \end{lstlisting}
 
-Now you will learn how to index an array. It is very similar to indexing vectors:
-\begin{lstlisting}
-%Accessing rows and columns
-t(1,:) %row
-t(:,2) %column
-\end{lstlisting}
+To create arrays of zeros or ones, you will use \mcode{zeros} and \mcode{ones} functions.
+Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 matrix of zeros and a vector of 5 ones.
 
-Complete the following tasks:
-\begin{itemize}
-\item Make an array of random numbers with 5 columns and 10 rows and assign it to a variable called \mcode{R}. i.e.
-make an array of size 5 by 10. This is a 2D array.
-\item Index R to return to the command line the value in column 3, row 8
-\item Index R to return to the command line the 4th row
-\item Index R to return to the command line the 7th column
-\item Index R to return to the command line the first 5 values on the 2nd row
-\item Make an array of random numbers  with 5 columns and 10 rows and assign it to a variable called \mcode{R}
-\item Make an array of random numbers of size 5 by 5 by 3. This is a a 3D array. Use the \mcode{help} or \mcode{doc} commands
-for help. The purpose of this question is to teach you how to read the help text.
-\end{itemize}
-
-You have now learned to create and index vectors and arrays. 
+You have now learned to create, index and do some computations with vectors and arrays.
+\todo{min, max, mean, std, etc?}
 
 
 \section{Making shiny graphs for your data}
@@ -372,7 +375,7 @@ Don't forget the semicolon.
 \item Add a line of code below the second \mcode{subplot} command to plot the variable R as a red line.
 \item Add a line of code below the third \mcode{subplot} command to plot the variable R as a thicker red line.
 \item Add a line of code below the fourth \mcode{subplot} command to plot the variable R as \textbf{red circles} not linked by a line.
-\item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers. 
+\item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers.
 \item SAVE THE RESULTING PLOT (WE NEED TO DECIDE HOW THEY WILL DO THIS)
 \item SHOULD WE TEACH \mcode{hold on} and \mcode{hold off}?
 \end{itemize}
@@ -383,7 +386,7 @@ Don't forget the semicolon.
 
 \section{Conditional execution with \emph{if\dots else} statement}
 
-\verb|Conditional expressions| are really important since they allow you to add logic to a function or script. From now on we're going to be typing in more and more of our code into functions rather than into the command line. You should be typing the following examples into files and running the files in the manner shown previously. Let's start off with a very simple conditional expression involving an \mcode{if} statement. 
+\verb|Conditional expressions| are really important since they allow you to add logic to a function or script. From now on we're going to be typing in more and more of our code into functions rather than into the command line. You should be typing the following examples into files and running the files in the manner shown previously. Let's start off with a very simple conditional expression involving an \mcode{if} statement.
 
 \begin{lstlisting}
 function myFunction
@@ -401,7 +404,7 @@ function myFunction
 	disp('But this does run')
 \end{lstlisting}
 
-I think you can see what's going on. The \mcode{==} means `is equal to'\footnote{A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}. Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test. 
+I think you can see what's going on. The \mcode{==} means `is equal to'\footnote{A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}. Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
 }. Try typing \mcode{1==1} and then \mcode{1==2} into the command line. What do you see? Those commands return a logical value: 0 or 1. Thus, the following is legal MATLAB code:
 \begin{lstlisting}
 function myFunction
@@ -466,19 +469,19 @@ for ii=1:20:100
 end
 \end{lstlisting}
 
-%In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations. 
+%In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations.
 
 
 \section{(Bonus) Manipulating text: string variables}
 
-A string in MATLAB is a vector of characters. We can define a string easily enough: 
+A string in MATLAB is a vector of characters. We can define a string easily enough:
 \begin{lstlisting}
 myStr='This is a string'; %just use single quotes to define a string
 %Strings follow the same indexing rules as numeric vectors:
 myStr(1:4) %returns "This" to the command line
 \end{lstlisting}
 
-Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another. 
+Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'. Do you have any idea why \mcode{'1' * 10} doesn't return an error? Hint: the `1' is an ASCII character. You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer. MATLAB has many such `xxx2yyy' commands for converting one thing to another.
 
 As you might expect, MATLAB has a load of functions to deal with strings. Let's look at two of them now. \mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string. Here are examples:
 
@@ -506,15 +509,34 @@ Do it again a few more times. What happened?
 What do you think the \mcode{rand} command does?
 Type \mcode{help rand} to see the help text for the \mcode{rand} function.
 Type \mcode{doc rand} to get this in GUI form.
-Read the help text to understand how the inputs to function work. 
+Read the help text to understand how the inputs to function work.
 
-Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology. 
+Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology.
+
+
+
+
+Complete the following tasks:
+\begin{itemize}
+\item Make an array of random numbers with 5 columns and 10 rows and assign it to a variable called \mcode{R}. i.e.
+make an array of size 5 by 10. This is a 2D array.
+\item Index R to return to the command line the value in column 3, row 8
+\item Index R to return to the command line the 4th row
+\item Index R to return to the command line the 7th column
+\item Index R to return to the command line the first 5 values on the 2nd row
+\item Make an array of random numbers  with 5 columns and 10 rows and assign it to a variable called \mcode{R}
+\item Make an array of random numbers of size 5 by 5 by 3. This is a a 3D array. Use the \mcode{help} or \mcode{doc} commands
+for help. The purpose of this question is to teach you how to read the help text.
+\end{itemize}
+
+
+
 
 \section*{Exercises}
 \begin{enumerate}
 
-\item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20. 
-Use the \mcode{unique} command to confirm that you have values from 0 to 20 and no others. Use the \mcode{hist} command to make a histogram of the distribution. Plot the histogram with 21 bins, since you have that many unique numbers. Does it look like a uniform distribution? Replace \mcode{round} with \mcode{ceil} and repeat. Is it uniform now? 
+\item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20.
+Use the \mcode{unique} command to confirm that you have values from 0 to 20 and no others. Use the \mcode{hist} command to make a histogram of the distribution. Plot the histogram with 21 bins, since you have that many unique numbers. Does it look like a uniform distribution? Replace \mcode{round} with \mcode{ceil} and repeat. Is it uniform now?
 
 \item Using the random vector you generated in the previous exercise, apply the \mcode{find} command and the \mcode{length} command to count the number of times the number 10 occurred. Does this number match what the histogram showed?
 
@@ -530,19 +552,19 @@ S.x='X string';
 
 make and array of 1 by 4 such structures. Use these to make 4 subplots. The vector is plotted. The two strings are the x and y labels for each plot. Use a loop.
 
-\item You have already learned about \mcode{if} statements involving the \mcode{==} operator. Go to the MATLAB help and learn about these related operators: \mcode{<}, \mcode{>}, \mcode{!=}, \mcode{>=}, and \mcode{<=}. Make sure you are comfortable with using all of them. Modify the \mcode{if} examples above to try out these other logic operators. 
+\item You have already learned about \mcode{if} statements involving the \mcode{==} operator. Go to the MATLAB help and learn about these related operators: \mcode{<}, \mcode{>}, \mcode{!=}, \mcode{>=}, and \mcode{<=}. Make sure you are comfortable with using all of them. Modify the \mcode{if} examples above to try out these other logic operators.
 
-\item Go to the MATLAB help and learn about the AND and OR operators (\mcode{&} and \mcode{\|}). Write a function with two input arguments (e.g. \mcode{myFunction(arg1,arg1)}) which will be single numbers. Use \mcode{if} statements along with the AND and OR operators to achieve the following: 1. Execute a block of code if either \mcode{arg1} or \mcode{arg2} is greater than 10.  2. Execute a block of code if both \mcode{arg1} and \mcode{arg2} are greater than 10. 
+\item Go to the MATLAB help and learn about the AND and OR operators (\mcode{&} and \mcode{\|}). Write a function with two input arguments (e.g. \mcode{myFunction(arg1,arg1)}) which will be single numbers. Use \mcode{if} statements along with the AND and OR operators to achieve the following: 1. Execute a block of code if either \mcode{arg1} or \mcode{arg2} is greater than 10.  2. Execute a block of code if both \mcode{arg1} and \mcode{arg2} are greater than 10.
 
-\item Write a function with an \mcode{if}/\mcode{elseif}/\mcode{else} statement and one input argument. Use the \mcode{isnumeric} and \mcode{ischar} functions to conditionally execute different blocks of code depending on whether the input argument was a number, a string, or something else. What type of input would you need to have the function execute the final \mcode{else} statement? i.e. neither a numeric or string input would (or should) cause this final code block to execute. 
+\item Write a function with an \mcode{if}/\mcode{elseif}/\mcode{else} statement and one input argument. Use the \mcode{isnumeric} and \mcode{ischar} functions to conditionally execute different blocks of code depending on whether the input argument was a number, a string, or something else. What type of input would you need to have the function execute the final \mcode{else} statement? i.e. neither a numeric or string input would (or should) cause this final code block to execute.
 
-\item Modify the random number while loop so it runs until the random number generator has produced two numbers over 0.8. Modify it again so it only breaks the loop if these two numbers are produced one after the other in succession. 
+\item Modify the random number while loop so it runs until the random number generator has produced two numbers over 0.8. Modify it again so it only breaks the loop if these two numbers are produced one after the other in succession.
 
 \item Build a 9 by 10 array. Plot this in an array of 3 by 3 subplots. Each subplot contains data from one row of the matrix. (Hint: array indexing). Waveforms should be red lines with no symbols. Add a green circle at the maximum value of each plot. (Hint: help max)
 
-\item Modify the previous exercise so that all sub-plots have the same scale. 
+\item Modify the previous exercise so that all sub-plots have the same scale.
 
-\item Modify the previous exercise, using \mcode{if} to add the label `X' to the bottom row of subplots only. 
+\item Modify the previous exercise, using \mcode{if} to add the label `X' to the bottom row of subplots only.
 
 \item Write a function that takes as arguments two strings. Have the function print `SAME!' to the command line code if both strings are the same. Once you've done that,  modify your function so that it prints `String A contains String B' if (you guessed it) string A contains string B. Hint: \mcode{isempty}
 
