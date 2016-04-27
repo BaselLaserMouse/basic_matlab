@@ -13,7 +13,7 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{helvet}
-\usepackage[compact]{titlesec} 
+\usepackage[compact]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
 
 \begin{document}
@@ -212,10 +212,9 @@ A function definition file always start with \mcode{function} keyword, and end w
 The function name, and possible inputs/outputs, are written after \mcode{function}.
 Here there is no input nor output to this function.
 
-According to you, what will happen when using this function?
-Run the function by typing its name into the command line and check defined variables in the \textbf{workspace} panel. What do you see?
-
+Use the function by typing \mcode{adder} into the command line and check defined variables in the \textbf{workspace} panel. What do you see?
 Notice how the variables defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
+
 This fact is called \textbf{scope}.
 The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function.
 They are created when \mcode{adder} runs and they are cleaned up when it ends.
@@ -261,24 +260,24 @@ MATLAB provides convenient ways to create \textbf{ranges}, i.e. vectors of evenl
 Try the following in the command line:
 \begin{lstlisting}
 clear                % remove all variables
-t = 1:5              % shortcut for [1, 2, 3, 4, 5]
-t = 1:2:10           % shortcut for [1, 3, 5, 7, 9]
+t = 1:5              % shortcut for [1,2,3,4,5]
+t = 1:2:10           % shortcut for [1,3,5,7,9]
 
 start = 20;
 step = 5;
 stop = 100;
 t = start:step:stop  % using variables instead of values
 \end{lstlisting}
-How would you create the vector \mcode{[5, 8, 11, 14]} using this syntax? What about \mcode{[-1, -2, -3, -4]}?
+How would you create the vector \mcode{[5,8,11,14]} using this syntax? What about \mcode{[-1,-2,-3,-4]}?
 
 You will now learn how to \textbf{index} the vector.
-Indexing is \textit{very important}.
+Indexing is \emph{very important}.
 Basically, ``indexing'' is the process of accessing sub-portions of the vector.
 Go through the following at the command line.
 If any of it does not make sense you should ask someone for help.
 \todo{logical indexing, linear indexing, \mcode{find} function?}
 \begin{lstlisting}
-t = [1, 10, 20,30, 40, 500, 1000]
+t = [1,10,20,30,40,500,1000]
 t(1)        % access first element of vector
 t([2, 3])   % access second and third elements
 t(2:4)      % use a range to access several elements
@@ -296,9 +295,10 @@ The variable \mcode{t} is a row vector (1 row).
 You can turn it into a column vector (1 column) by transposing it, using a single quote \mcode{'}.
 Work through the following:
 \begin{lstlisting}
-size(t)    % size of the row vector
-t2 = t';   % transposing using a quote
-size(t2)   % size of the column vector
+t = 1:2:10;
+size(t)   % size of the row vector
+t2 = t';  % transposing using a quote
+size(t2)  % size of the column vector
 \end{lstlisting}
 
 
@@ -324,10 +324,12 @@ Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 ma
 Now you will learn how to index an array.
 It is very similar to indexing vectors, except that there are several dimensions:
 \begin{lstlisting}
+t = [1,2,3,90; 4,5,6,90]
 t(1, 2)      % first line, second column
 t(1, [2,3])  % first line, second and thirs columns
 t(1, :)      % first line, all columns
 t(:, 2)      % all lines, second column
+t(2, end-1)  % second line, second-to-last column
 \end{lstlisting}
 The \mcode{:} (colon) operator is used to index a whole dimension.
 
@@ -387,7 +389,7 @@ end
 \item Add a line of code below the third \mcode{subplot} command to plot the variable \mcode{R} as a thicker red line.
 \item Add a line of code below the fourth \mcode{subplot} command to plot the variable \mcode{R} as \textbf{red circles} not linked by a line.
 \item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers.
-\item Save the figure as a .pnf file using \emph{File/Save As...} menu in the figure window.
+\item Save the figure as a .pnf file using \emph{File/Save As\dots} menu in the figure window.
 \end{itemize}
 \todo{\mcode{hold on} and \mcode{hold off}}
 
