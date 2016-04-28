@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{todonotes}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage[framed,numbered,autolinebreaks]{mcode}
 \usepackage{fullpage}
 \usepackage{url,textcomp}
@@ -554,45 +555,50 @@ Rewrite the previous function \mcode{multiplyLoop} without loop.
 
 \section{(Bonus) More exercises}
 
+The following exercises should be done in a separate function for each of them.
+
 \begin{enumerate}
 
 \item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20.
-Use the \mcode{unique} command to confirm that you have values from 0 to 20 and no others. Use the \mcode{hist} command to make a histogram of the distribution. Plot the histogram with 21 bins, since you have that many unique numbers. Does it look like a uniform distribution? Replace \mcode{round} with \mcode{ceil} and repeat. Is it uniform now?
+Use the \mcode{unique} command to confirm that you have values from 0 to 20 and no others.
+Use the \mcode{hist} command to make a histogram of the distribution.
+Plot the histogram with 21 bins, since you have that many unique numbers.
+Does it look like a uniform distribution? Replace \mcode{round} with \mcode{ceil} and repeat.
+Is it uniform now?
 
-\item Using the random vector you generated in the previous exercise, apply the \mcode{find} command and the \mcode{length} command to count the number of times the number 10 occurred. Does this number match what the histogram showed?
+\item Using the random vector you generated in the previous exercise, apply the \mcode{find} command and the \mcode{length} command to count the number of times the number 10 occurred.
+  Does this number match what the histogram showed?
 
-\item Repeat the previous exercise (ignoring the histogram) and count how many times a number less than or equal to two occurred. Repeat again and count the number of times a number less than or equal to three occurred. Now write a \mcode{for} loop that performs this count for all numbers between 1 and 20 (which are the unique numbers in the vector).
+\item Repeat the previous exercise (ignoring the histogram) and count how many times a number less than or equal to two occurred.
+  Repeat again and count the number of times a number less than or equal to three occurred.
+  Now write a \mcode{for} loop that performs this count for all numbers between 1 and 20 (which are the unique numbers in the vector).
 
-\item Build a structure containing three fields: a 1 by 30 random data vector, r, and two strings (x and y).  e.g.
-\begin{lstlisting}
-S.r=randn(1,30);
-S.y='Y string';
-S.x='X string';
-\end{lstlisting}
-
-
-make and array of 1 by 4 such structures. Use these to make 4 subplots. The vector is plotted. The two strings are the x and y labels for each plot. Use a loop.
-
-\item You have already learned about \mcode{if} statements involving the \mcode{==} operator. Go to the MATLAB help and learn about these related operators: \mcode{<}, \mcode{>}, \mcode{!=}, \mcode{>=}, and \mcode{<=}. Make sure you are comfortable with using all of them. Modify the \mcode{if} examples above to try out these other logic operators.
-
-\item Go to the MATLAB help and learn about the AND and OR operators (\mcode{&} and \mcode{\|}). Write a function with two input arguments (e.g. \mcode{myFunction(arg1,arg1)}) which will be single numbers. Use \mcode{if} statements along with the AND and OR operators to achieve the following: 1. Execute a block of code if either \mcode{arg1} or \mcode{arg2} is greater than 10.  2. Execute a block of code if both \mcode{arg1} and \mcode{arg2} are greater than 10.
-
-\item Write a function with an \mcode{if}/\mcode{elseif}/\mcode{else} statement and one input argument. Use the \mcode{isnumeric} and \mcode{ischar} functions to conditionally execute different blocks of code depending on whether the input argument was a number, a string, or something else. What type of input would you need to have the function execute the final \mcode{else} statement? i.e. neither a numeric or string input would (or should) cause this final code block to execute.
-
-\item Modify the random number while loop so it runs until the random number generator has produced two numbers over 0.8. Modify it again so it only breaks the loop if these two numbers are produced one after the other in succession.
-
-\item Build a 9 by 10 array. Plot this in an array of 3 by 3 subplots. Each subplot contains data from one row of the matrix. (Hint: array indexing). Waveforms should be red lines with no symbols. Add a green circle at the maximum value of each plot. (Hint: help max)
-
-\item Modify the previous exercise so that all sub-plots have the same scale.
-
-\item Modify the previous exercise, using \mcode{if} to add the label `X' to the bottom row of subplots only.
-
-\item Write a function that takes as arguments two strings. Have the function print `SAME!' to the command line code if both strings are the same. Once you've done that,  modify your function so that it prints `String A contains String B' if (you guessed it) string A contains string B. Hint: \mcode{isempty}
+\item Build a 9 by 10 array. Plot this in an array of 3 by 3 subplots.
+  Each subplot contains data from one row of the matrix (hint: array indexing).
+  Waveforms should be red lines with no symbols.
+  Add a green circle at the maximum value of each plot (hint: help max).
 
 \end{enumerate}
 
-\section{(Bonus) The debugger might be your best friend}
+\section{Additional resources}
 
+You want more?
+Right, here are some nice online resources to complete and go beyond this tutorial:
+\begin{itemize}
+  \item the MIT MATLAB course,\footnote{%
+    \url{http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-094-introduction-to-matlab-january-iap-2010/}
+  }
+  \item tutorialspoint.com course,\footnote{%
+    \url{http://www.tutorialspoint.com/matlab}
+  }
+  \item Software Carpentry tutorial.\footnote{%
+    \url{http://swcarpentry.github.io/matlab-novice-inflammation/}
+  }
+\end{itemize}
 
+The last website, Software Carpentry, is a golden mine for data analysis.
+Check their lessons\footnote{\url{http://software-carpentry.org}} if you want to learn more about other tools and programming languages used to crunch data and extract the best of them.
+
+Happy analysis!
 
 \end{document}
