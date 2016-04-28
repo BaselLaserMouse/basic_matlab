@@ -393,6 +393,12 @@ Making good graphs is one of the best ways to give a quick and clear view of you
 
 \subsection{Basic plotting of vector data}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{basicplot.pdf}
+  \caption{Basic plot}\label{fig:basic}
+\end{figure}
+
 You will now learn to plot vectors and arrays of random numbers.
 Line and point data are plotted to screen with the \mcode{plot} command.
 
@@ -419,7 +425,7 @@ After each step, run your function (typing \mcode{testPlot} in the command line)
   \item \mcode{plot} can take a \textbf{string} input defining the type of the line.
     Look for \emph{LineSpec} information in \mcode{plot} documentation and/or look at the provided examples.
   \item Change the call to \mcode{plot} to display \mcode{R1} with a red line.
-  \item Change the call to \mcode{plot} to display \mcode{R1} with a red circles, without lines.
+  \item Change the call to \mcode{plot} to display \mcode{R1} with red circles and lines.
   \item Try to display \mcode{R2} on the same graph with a new \mcode{plot} call. (1 new line)\\
     By default, MATLAB blanks previous graph if you call \mcode{plot} twice on the same figure.
     To desactivate this behaviour, you need to use \mcode{hold on} and \mcode{hold off} before and after
@@ -437,10 +443,16 @@ hold off
   \item Limit the x-axis display to the first 50 points, using \mcode xlim function. (1 new line)
   \item Be proud of your first graph and save it as a .png file using \emph{File/Save As\dots} menu in the figure window.
 \end{enumerate}
-\todo{figure example}
 
+The final result should look like figure~\ref{fig:basic}.
 
 \subsection{Advanced plotting: subplots, images and histogram}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{advancedplot.pdf}
+  \caption{Advanced plot}\label{fig:adv}
+\end{figure}
 
 You will give a try to more advanced graphical functions.
 The aim is to plot side-by-side an image and an histogram of some random data.
@@ -457,7 +469,8 @@ In this function, do the following steps that will lead you to success:
   \item display the histogram of \mcode{R2} on this sub-plot (use \mcode{hist} or \mcode{histogram}),
   \item save your figure as a .png image.
 \end{enumerate}
-\todo{figure example}
+
+You should obtain something similar to figure~\ref{fig:adv}.
 
 
 \section{Conditional expressions with \emph{if\dots else} statement}
