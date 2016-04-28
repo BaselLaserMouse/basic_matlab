@@ -395,47 +395,54 @@ Making good graphs is one of the best ways to give a quick and clear view of you
 You will now learn to plot vectors and arrays of random numbers.
 Line and point data are plotted to screen with the \mcode{plot} command.
 
-Open the doc page for the \mcode{plot} command.
-Read the \textbf{Description} and \textbf{Example} sections.
-You will need to understand this information to complete the following exercise.
-
-From now on we're going to be typing in more and more of our code into functions rather than into the command line.
-You should be typing the following examples into files and running the files in the manner shown previously.
-
-
-\begin{itemize}
-\item Create a new function called \mcode{testPlot}. It should look like this to begin with, then you will fill it in:
+For this exercice, you will create a new function called \mcode{testPlot} in a file name \verb|testPlot.m|, as follows:
 \begin{lstlisting}
 function testPlot
   % exercise function
-  figure;         % create a new figure
-  subplot(2,2,1)  % make subplot axix in top left
-
-  subplot(2,2,2)  % make subplot axis in top right
-
-  subplot(2,2,3)  % make subplot axis in bottom left
-
-  subplot(2,2,4)  % make subplot axis in bottom right
+  R1 = rand(1, 100);  % a vector of 100 random variables
+  R2 = rand(1, 100);  % another vector of 100 random variables
 
 end
 \end{lstlisting}
 
-\item Run the above. You should get a figure window with four empty sub-plots.
-  Do not proceed until you have this.
-\item Within your function, add a line that makes a \textbf{vector} of 100 random numbers and stores this in a variable called \mcode{R}.
-  Don't forget the semicolon.
-\item Add a line of code below the first \mcode{subplot} command to plot the variable \mcode{R} as a default line plot using the \mcode{plot} function.
-\item Add a line of code below the second \mcode{subplot} command to plot the variable \mcode{R} as a red line.
-\item Add a line of code below the third \mcode{subplot} command to plot the variable \mcode{R} as a thicker red line.
-\item Add a line of code below the fourth \mcode{subplot} command to plot the variable \mcode{R} as \textbf{red circles} not linked by a line.
-\item Use the \mcode{xlim} command (remember \mcode{help xlim}) to restrict the display of the fourth plot to only the first 50 numbers.
-\item Save the figure as a .pnf file using \emph{File/Save As\dots} menu in the figure window.
-\end{itemize}
-\todo{\mcode{hold on} and \mcode{hold off}}
+Open the doc page for the \mcode{plot} command.
+Read quickly the \textbf{Description} and \textbf{Example} sections, to see the possibilities of this function.
 
-\subsection*{Basic plotting of matrices (image) data}
+You will now add some lines to \mcode{testPlot} to display \mcode{R1} and \mcode{R2} in a fancy way.
+We will give you the steps with the functions you should use.
+Remember, you can (and \emph{should}) look at the documentation of the functions we will mention.
+After each step, run your function (typing \mcode{testPlot} in the command line) to see your progress.
+\begin{enumerate}
+  \item Open a new empty figure window with \mcode{figure} function (1 new line).
+  \item Use the \mcode{plot} function to display \mcode{R1} with the default settings (1 new line).
+  \item \mcode{plot} can take a \textbf{string} input defining the stype of the line.
+    Look for \emph{LineSpec} information in \mcode{plot} documentation and/or look at the provided examples.
+  \item Change the call to \mcode{plot} to display \mcode{R1} with a red line.
+  \item Change the call to \mcode{plot} to display \mcode{R1} with a red circles, without lines.
+  \item Try to display \mcode{R2} on the same graph with a new \mcode{plot} call. (1 new line)\\
+    By default, MATLAB blanks previous graph if you call \mcode{plot} twice on the same figure.
+    To desactivate this behaviour, you need to use \mcode{hold on} and \mcode{hold off} before and after
+    your second \mcode{plot} call.
+    Here is a fictional example, adapt it to your case! (2 new lines)
+\begin{lstlisting}
+plot(x)  % first graph
+hold on
+plot(y)  % second graph
+hold off
+\end{lstlisting}
+  \item Add a title to your graph, using \mcode{title} function. (1 new line)
+  \item Add fictional axes names to your graph, using \mcode{xlabel} and \mcode{ylabel} functions. (2 new lines)
+  \item Display a grid on your graph, using \mcode{grid} function. (1 new line)
+  \item Limit the x-axis display to the first 50 points, using \mcode xlim function. (1 new line)
+  \item Be proud of your first graph and save it as a .pnf file using \emph{File/Save As\dots} menu in the figure window.
+\end{enumerate}
+\todo{figure example}
 
-\todo[inline]{introduce \mcode{imagesc}}
+
+\subsection*{Advanced plotting: subplots, images and histogram}
+
+\todo[inline]{imagesc, hist, subplot}
+
 
 
 \section{Conditional expressions with \emph{if\dots else} statement}
