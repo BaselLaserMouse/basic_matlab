@@ -259,7 +259,7 @@ When you start writing your own functions you should be using comments all the t
 
 So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
 
-\subsection*{Vectors and indexing}
+\subsection{Vectors and indexing}
 
 A vector is just a list (one row or one column) of numbers.
 Let's learn how to create and manipulate these.
@@ -313,7 +313,7 @@ t2 = t';  % transposing using a quote
 size(t2)  % size of the column vector
 \end{lstlisting}
 
-\subsection*{Operations, filtering and functions on vectors}
+\subsection{Operations, filtering and functions on vectors}
 
 Arithmetic still works with vectors.
 You can easily add, subtract, multiply, etc. all elements of an array by a number.
@@ -352,7 +352,7 @@ The last line presents a special way to handle functions that can return several
 What is returned in \mcode{xmax} and \mcode{idx} variables?
 What happen if you just type \mcode{xmax = max(t)}?
 
-\subsection*{Matrices and other arrays}
+\subsection{Matrices and other arrays}
 
 A vector has one dimension, whereas an \textbf{matrix} has two dimensions.
 An \textbf{array} is a more generic creature, with any number of dimensions, thus vectors and matrices are arrays.
@@ -390,7 +390,7 @@ You have now learned to create, index and do some computations with vectors and 
 A large part of an analysis consists in summarizing your results.
 Making good graphs is one of the best ways to give a quick and clear view of your results.
 
-\subsection*{Basic plotting of vector data}
+\subsection{Basic plotting of vector data}
 
 You will now learn to plot vectors and arrays of random numbers.
 Line and point data are plotted to screen with the \mcode{plot} command.
@@ -415,7 +415,7 @@ After each step, run your function (typing \mcode{testPlot} in the command line)
 \begin{enumerate}
   \item Open a new empty figure window with \mcode{figure} function (1 new line).
   \item Use the \mcode{plot} function to display \mcode{R1} with the default settings (1 new line).
-  \item \mcode{plot} can take a \textbf{string} input defining the stype of the line.
+  \item \mcode{plot} can take a \textbf{string} input defining the type of the line.
     Look for \emph{LineSpec} information in \mcode{plot} documentation and/or look at the provided examples.
   \item Change the call to \mcode{plot} to display \mcode{R1} with a red line.
   \item Change the call to \mcode{plot} to display \mcode{R1} with a red circles, without lines.
@@ -434,21 +434,35 @@ hold off
   \item Add fictional axes names to your graph, using \mcode{xlabel} and \mcode{ylabel} functions. (2 new lines)
   \item Display a grid on your graph, using \mcode{grid} function. (1 new line)
   \item Limit the x-axis display to the first 50 points, using \mcode xlim function. (1 new line)
-  \item Be proud of your first graph and save it as a .pnf file using \emph{File/Save As\dots} menu in the figure window.
+  \item Be proud of your first graph and save it as a .png file using \emph{File/Save As\dots} menu in the figure window.
 \end{enumerate}
 \todo{figure example}
 
 
-\subsection*{Advanced plotting: subplots, images and histogram}
+\subsection{Advanced plotting: subplots, images and histogram}
 
-\todo[inline]{imagesc, hist, subplot}
+You will give a try to more advanced graphical functions.
+The aim is to plot side-by-side an image and an histogram of some random data.
 
+First, create a new function \mcode{testSubplot} in a new file \verb|testSubplot.m|.
+In this function, do the following steps that will lead you to success:
+\begin{enumerate}
+  \item create a 100-by-100 matrix of random data and store it in a variable \mcode{R1} (use \mcode{rand} function),
+  \item create a vector of 100 random numbers and store it in a variable \mcode{R2},
+  \item create a new empty figure window (use \mcode{figure} function),
+  \item create a new sub-plot on the left of the figure (use \mcode{subplot} function, check its documentation, especially examples),
+  \item display in this sub-plot \mcode{R1} as an image (use \mcode{imshow} or \mcode{imagesc}, check the difference between both),
+  \item create a second sub-plot on the right of the figure (use \mcode{subplot} again),
+  \item display the histogram of \mcode{R2} on this sub-plot (use \mcode{hist} or \mcode{histogram}),
+  \item save your figure as a .png image.
+\end{enumerate}
+\todo{figure example}
 
 
 \section{Conditional expressions with \emph{if\dots else} statement}
 
 \verb|Conditional expressions| are really important since they allow you to add logic to a function.
-Indeed, an \emph{if\dots else} statement is a way to make a part of your function executed or not depending on a condition.
+Indeed, an \textbf{if\dots else} statement is a way to make a part of your function executed or not depending on a condition.
 
 Type the following in a new function \mcode{testIf}:
 \begin{lstlisting}
@@ -460,6 +474,8 @@ function testIf
   disp('this always runs')
 end
 \end{lstlisting}
+and run it of course!
+
 What happens if you change the value of \mcode{a} to \mcode{-3}?
 What gets displayed?
 
@@ -490,66 +506,54 @@ end
 
 \section{Repeating operations with \emph{for} loop}
 
-\mcode{for} loops are another loop type. They are used when the number of repetitions is known in advance. This is the syntax:
+Sometimes you might want to repeat some actions a finite number of case.
+A \emph{bad} way to do this is to copy/paste lines and change values in each line to fit your needs.
+A \emph{good} way to achieve this repetition is to use a \textbf{for}-loop construct.
+
+A \textbf{for}-loops is used when the number of repetitions is known in advance.
+The following function gives you a typical example:
 \begin{lstlisting}
-  %one example
+function testForLoop
+  % loop from 1 to 10
   for ii=1:10
-    disp(ii)
+    disp('Loop 1')
+    disp(ii)  % display current value of ii
   end
 
-  %another example
-  for ii=1:10:100
-    disp(ii)
-  end
-\end{lstlisting}
-
-You can nest for loops:
-\begin{lstlisting}
-for ii=1:20:100
-  for jj=1:5
-    fprintf('ii is %d and jj is %d\n',ii,jj)
+  % loop from 1 to 100, with increment of 10
+  for jj=1:10:100
+    disp('Loop 2')
+    disp(jj)  % display current value of jj
   end
 end
 \end{lstlisting}
 
-%In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations.
+How many lines are printed by MATLAB when you run this function?
+Quite a lot compared to the number of lines written, isn't it?
+
+The \textbf{for}-loop starts with the \mcode{for} keyword, followed by the increment expression (e.g. \mcode{ii=1:10}), then the code for each iteration and finally the \mcode{end} keyword to close the loop definition.
+At each iteration, the loop variable (\mcode{ii} and \mcode{jj} in example loops) gets the next value from the vector defined on the right of the \mcode{=} (equal) symbol.
+
+Complete the following function to make it multiply each element of the variable \mcode{R1} by 2:
+\begin{lstlisting}
+function multiplyLoop
+  % exercise function
+
+  R1 = rand(12);  % initialize R1 with random values
+  disp(R1);       % display initial R1
+
+  % HERE, YES RIGHT HERE, YOU SHOULD PUT A LOOP.
+
+  disp(R1)        % display updated R1
+end
+\end{lstlisting}
+
+In general, even if loops are great, you can do the same operations more efficiently using arrays indexing and functions.
+Rewrite the previous function \mcode{multiplyLoop} without loop.
 
 
-\section{(Bonus) The debugger might be your best friend}
+\section{(Bonus) More exercises}
 
-
-\pagebreak
-
-
-Type \mcode{rand} into the command line and press return. What happened?
-Do it again a few more times. What happened?
-What do you think the \mcode{rand} command does?
-Type \mcode{help rand} to see the help text for the \mcode{rand} function.
-Type \mcode{doc rand} to get this in GUI form.
-Read the help text to understand how the inputs to function work.
-
-Based on the help text, get the \mcode{rand} command to return a \textbf{matrix} of 5 rows and 5 columns of random numbers. Now get the \mcode{rand} command to return a matrix of 10 rows and 2 columns. Finally, return a single column of 10 numbers. This is called a column \textbf{vector}. You will notice that the MATLAB help often refers to a list of numbers as a vector, this is just common engineering terminology.
-
-
-
-
-Complete the following tasks:
-\begin{itemize}
-\item Make an array of random numbers with 5 columns and 10 rows and assign it to a variable called \mcode{R}. i.e.
-make an array of size 5 by 10. This is a 2D array.
-\item Index R to return to the command line the value in column 3, row 8
-\item Index R to return to the command line the 4th row
-\item Index R to return to the command line the 7th column
-\item Index R to return to the command line the first 5 values on the 2nd row
-\item Make an array of random numbers  with 5 columns and 10 rows and assign it to a variable called \mcode{R}
-\item Make an array of random numbers of size 5 by 5 by 3. This is a a 3D array. Use the \mcode{help} or \mcode{doc} commands
-for help. The purpose of this question is to teach you how to read the help text.
-\end{itemize}
-
-
-
-
-\section*{Exercises}
 \begin{enumerate}
 
 \item Use \mcode{rand}, \mcode{round}, and \mcode{*} to produce a vector of 5000 random integers having values between 0 and 20.
@@ -586,6 +590,9 @@ make and array of 1 by 4 such structures. Use these to make 4 subplots. The vect
 \item Write a function that takes as arguments two strings. Have the function print `SAME!' to the command line code if both strings are the same. Once you've done that,  modify your function so that it prints `String A contains String B' if (you guessed it) string A contains string B. Hint: \mcode{isempty}
 
 \end{enumerate}
+
+\section{(Bonus) The debugger might be your best friend}
+
 
 
 \end{document}
