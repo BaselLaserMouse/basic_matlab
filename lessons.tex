@@ -395,7 +395,7 @@ Making good graphs is one of the best ways to give a quick and clear view of you
 You will now learn to plot vectors and arrays of random numbers.
 Line and point data are plotted to screen with the \mcode{plot} command.
 
-For this exercice, you will create a new function called \mcode{testPlot} in a file name \verb|testPlot.m|, as follows:
+For this exercise, you will create a new function called \mcode{testPlot} in a file name \verb|testPlot.m|, as follows:
 \begin{lstlisting}
 function testPlot
   % exercise function
@@ -448,70 +448,42 @@ hold off
 \section{Conditional expressions with \emph{if\dots else} statement}
 
 \verb|Conditional expressions| are really important since they allow you to add logic to a function.
-Let's start off with a very simple conditional expression involving an \mcode{if} statement.
+Indeed, an \emph{if\dots else} statement is a way to make a part of your function executed or not depending on a condition.
 
+Type the following in a new function \mcode{testIf}:
 \begin{lstlisting}
-function myFunction
-	if 1 == 1
-	  disp('This runs')
-	end
-end
-\end{lstlisting}
-
-Type the above into a function and run it. Now try:
-\begin{lstlisting}
-function myFunction
-	if 1 == 2
-	  disp('This does not run')
-	end
-	disp('But this does run')
-end
-\end{lstlisting}
-
-I think you can see what's going on.
-The \mcode{==} means \emph{is equal to}%
-\footnote{%
-  A very common syntax error that you \textit{will} make is to type \mcode{1=2} instead of \mcode{1==2}.
-  Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
-}.
-Try typing \mcode{1==1} and then \mcode{1==2} into the command line. What do you see?
-Those commands return a logical value: 0 or 1.
-Thus, the following is legal MATLAB code:
-\begin{lstlisting}
-function myFunction
-	if (0)
-	  disp('This does not run')
-	end
-	if (1)
-	  disp('But this does run')
+function testIf
+  a = 2;
+  if a < 0
+    disp('a is negative')
   end
+  disp('this always runs')
 end
 \end{lstlisting}
+What happens if you change the value of \mcode{a} to \mcode{-3}?
+What gets displayed?
 
-In the previous example we have two if statements one after the other.
-There is a way that we can link them and produce more elegant code:
-\begin{lstlisting}
-function myFunction
-  T=1;
-	if (T)
-	  disp('This will run')
-	else
-	  disp('But this does not run')
-  end
-end
-\end{lstlisting}
+This conditional expression starts with the \mcode{if} keyword, followed by the condition, then the code to be executed if the condition is true (i.e. equals 1), and finally the \mcode{end} keyword to delineate the expression.
+In the previous example, depending on the value of \mcode{a}, the condition \mcode{a < 0} equals 0 or 1, and line 4 gets executed or not.
 
-You can even go one step further:
+If the first condition is false, you can add another condition using \mcode{elseif} keyword, with its own code to execute if true.
+Note that it is possible to chain several \mcode{elseif} conditions.
+In case you want to execute something if all previous conditions were false, you can use an \mcode{else} keyword followed by the code to be executed.
+
+Here is an example that make use of all these constructs.
+Change the value of the variable \mcode{a} and see how the function behaves.
 \begin{lstlisting}
-function myFunction
-  T=10;
-	if (T==10)
-	  disp('This will run')
-	elseif (T<5)
-	  disp('But this does not run')
+function testIf
+  a = 2;
+  if a < 0
+    disp('a is negative')
+  elseif a >= 5
+    disp('a is superior or equal to 5')
+  elseif a == 1
+    disp('a is equal to 1')
   else
-    %Something else
-  end
+    disp('a is 2, 3 or 4')
+  disp('this always runs')
 end
 \end{lstlisting}
 
