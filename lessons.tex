@@ -54,7 +54,7 @@ You type commands in the space after the \verb|>>| symbol.
 
 Take a deep breath and type a number into the command line, e.g. \\
 \verb|>>| \mcode{1} \\
-then press return.\todo{enter?} \\
+then press return. \\
 See how it echoes the number back to you? Now type: \\
 \verb|>>| \mcode{1;} \\
 Note the presence of the \mcode{;} symbol.
@@ -62,9 +62,15 @@ See how it no longer echoes the number back to you?
 The \mcode{;} suppresses the echo.
 You will use this feature a lot so keep it in mind.
 
-\todo[inline]{positive/negative numbers, scientific notation}
+Number are not limited to positive integers.
+You can also enter real numbers, for example \\
+\verb|>> 0.012| \\
+or with a scientific notation \\
+\verb|>> 1.2e-2| \\
+and negative values, using a \mcode{-} (minus) sign:\\
+\verb|>> -3.5| \\
 
-Now let's look at basic arithmetic operators. \todo{floating point values? negative values?}
+Now let's look at basic arithmetic operators.
 Type the following into the command line (note we leave off the semicolon so you can see the output):
 \begin{lstlisting}
 4 + 10
@@ -86,7 +92,7 @@ Compare the results from the following lines:
 
 To conclude this first part, enter the following into the command line: \\
 \verb|>>| \mcode{\%This is a comment.} \\
-After pressing enter, nothing should have happened.
+After pressing return, nothing should have happened.
 Indeed, any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't executed by MATLAB.
 We will use these comments to provide additional information to you.
 
@@ -130,8 +136,16 @@ Be careful, variables names are case sensitive, so \mcode{T} and \mcode{t} are d
 
 If you want to know about the currently used variables, have a look to the \textbf{workspace} panel.
 There you will see names and values of your variables.
-So far, we have only been manipulating numbers, aka scalar values in MATLAB parlance.
-We will see later more advanced types like arrays and strings (sequence of characters).
+
+So far, we have only been manipulating variables containing numbers, but other types of data can be used.
+For example, a sequence of characters, also known as \textbf{string}, is defined by enclosing any text with single quotes.
+Try the following in the command line:
+\begin{lstlisting}
+'my first string!'         % create a string and echo it
+b = 'and the second one';  % assign a string to a variable, without echoing
+\end{lstlisting}
+This type of variable is useful to print custom messaged, as we will see later on.
+Keep that in a corner of your head.
 
 Sometimes, one may want to delete a variable, because it is not used anymore and use a lot of memory.
 To do so, you will use the \mcode{clear} command.
@@ -189,7 +203,6 @@ r3 = round(x, -2);
 What are the values in variables \mcode{r1}, \mcode{r2} and \mcode{r3} at the end?
 
 Congratulations, you've now learned the basics of entering information into the command-line.
-\todo{multiple outputs functions, key/value interface using strings?}
 \todo{add a example with mod}
 
 \section{Writing your own functions}
@@ -275,7 +288,6 @@ Indexing is \emph{very important}.
 Basically, ``indexing'' is the process of accessing sub-portions of the vector.
 Go through the following at the command line.
 If any of it does not make sense you should ask someone for help.
-\todo{logical indexing, linear indexing, \mcode{find} function?}
 \begin{lstlisting}
 t = [1,10,20,30,40,500,1000]
 t(1)        % access first element of vector
@@ -301,6 +313,44 @@ t2 = t';  % transposing using a quote
 size(t2)  % size of the column vector
 \end{lstlisting}
 
+\subsection*{Operations, filtering and functions on vectors}
+
+Arithmetic still works with vectors.
+You can easily add, subtract, multiply, etc. all elements of an array by a number.
+Try the following:
+\begin{lstlisting}
+t = [1,3,-1,2.1]
+a = 10              % scalar variable
+t*10                % element-wise multiplication, using scalar expansion
+\end{lstlisting}
+
+It is also possible to convert a vector into a binary (0 or 1) vector using comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
+\footnote{%
+  A very common syntax error that you \emph{will} make is to type \mcode{a=b} instead of \mcode{a==b}.
+  Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
+}
+A binary vector can be used as a mask to filter another vector of the same size.
+Test the following in the command line:
+\begin{lstlisting}
+t = [2, -3, 4, 2, -5];
+t == 2          % binary vector designating values of t equal to 2
+s = t > 0       % binary vector designating positive values in t
+f1 = t(s)       % extract positive values of t in f1, using s
+f2 = t(t <= 0)  % directly extract negative or null values of t in f2
+\end{lstlisting}
+
+In addition, to manipulate vectors, MATLAB provides numerous functions.
+In the following example, we present some well known functions.
+Be curious, check their documentation!
+\begin{lstlisting}
+t = [1.2, -3.1, 5, 12, 9.5]
+xbar = mean(t)  % some highly advanced statistics
+sigma = std(t)  % more mind-blowing statistics
+[xmax, idx] = max(t)
+\end{lstlisting}
+The last line presents a special way to handle functions that can return several outputs.
+What is returned in \mcode{xmax} and \mcode{idx} variables?
+What happen if you just type \mcode{xmax = max(t)}?
 
 \subsection*{Matrices and other arrays}
 
@@ -333,17 +383,7 @@ t(2, end-1)  % second line, second-to-last column
 \end{lstlisting}
 The \mcode{:} (colon) operator is used to index a whole dimension.
 
-Arithmetic still works with arrays and scalars, e.g. you can easily add, subtract, multiply, etc. all elements of an array by a scalar.
-Try the following:
-\begin{lstlisting}
-t = [1,2,3; 4,5,6]  % 2 by 3 matrix
-a = 10              % scalar variable
-t*10                % element-wise multiplication, using scalar expansion
-\end{lstlisting}
-
 You have now learned to create, index and do some computations with vectors and arrays.
-\todo{min, max, mean, std, etc?}
-
 
 \section{Making shiny graphs for your data}
 
@@ -496,39 +536,7 @@ end
 %In general, nested for loops aren't a great a idea. MATLAB works better with \verb|vectorised| code. i.e. Code that uses matrix operations.
 
 
-\section{(Bonus) Manipulating text: string variables}
-
-A string in MATLAB is a vector of characters. We can define a string easily enough:
-\begin{lstlisting}
-  myStr = 'This is a string';  % just use single quotes to define a string
-  % strings follow the same indexing rules as numeric vectors:
-  myStr(1:4) % returns "This" to the command line
-\end{lstlisting}
-
-Note that \mcode{S='1'} is the string `1' and \mcode{S=1} is the number `1'.
-Do you have any idea why \mcode{'1' * 10} doesn't return an error?
-Hint: the `1' is an ASCII character.
-You can convert a string to a number: \mcode{str2num('1')*10} That returns the expected answer.
-MATLAB has many such `xxx2yyy' commands for converting one thing to another.
-
-As you might expect, MATLAB has a load of functions to deal with strings.
-Let's look at two of them now.
-\mcode{strcmp} is used to determine if two strings are identical and \mcode{strfind} looks for the occurances of one string in another string.
-Here are examples:
-\begin{lstlisting}
-  A='a string';
-  B='some other string';
-  C='a string';
-  strcmp(A,B)          % returns 0, indicating that this comparison is false
-  strcmp(A,C)          % returns 1, indicating that this comparison is Turner
-
-  strfind(A,'string')  % returns 3, why is that?
-  strfind(A,'String')  % returns an empty array, why is that?
-\end{lstlisting}
-
-
 \section{(Bonus) The debugger might be your best friend}
-
 
 
 \pagebreak
