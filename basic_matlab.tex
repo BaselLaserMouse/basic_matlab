@@ -301,8 +301,7 @@ t(1:2:end)  % access elements at odd indices
 \end{lstlisting}
 
 To check the size of a vector, you can use the \mcode{length}, \mcode{size} or \mcode{numel} functions.
-Try all three functions on the \mcode{t} variable. What is the difference?
-If it's not clear have a look to the documentation of these functions.
+Try all three functions on the \mcode{t} variable. Is their any difference?
 
 The variable \mcode{t} is a row vector (1 row).
 You can turn it into a column vector (1 column) by transposing it, using a single quote \mcode{'}.
@@ -368,10 +367,10 @@ In the following exercise you will learn how to make a matrix ``by hand'' and ho
 t = [1,2,3,90; 4,5,6,90] % make an array with two rows and four columns
 size(t)
 \end{lstlisting}
-Try \mcode{numel} and \mcode{length} functions on this matrix.
+Try the \mcode{numel} and \mcode{length} functions on this matrix.
 What's different from vector case?
 
-To create arrays of zeros or ones, you can use \mcode{zeros} and \mcode{ones} functions.
+To create arrays of zeros or ones, you can use the \mcode{zeros} and \mcode{ones} functions.
 Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 matrix of zeros and a vector of 5 ones.
 
 Now you will learn how to index an array.
@@ -424,7 +423,7 @@ We will give you the steps with the functions you should use.
 Remember, you can (and \emph{should}) look at the documentation of the functions we will mention.
 After each step, run your function (typing \mcode{testPlot} in the command line) to see your progress.
 \begin{enumerate}
-  \item Open a new empty figure window with \mcode{figure} function (1 new line).
+  \item Open a new empty figure window using the \mcode{figure} function (1 new line).
   \item Use the \mcode{plot} function to display \mcode{R1} with the default settings (1 new line).
   \item \mcode{plot} can take a \textbf{string} input defining the type of the line.
     Look for \emph{LineSpec} information in \mcode{plot} documentation and/or look at the provided examples.
@@ -441,41 +440,49 @@ hold on
 plot(y)  % second graph
 hold off
 \end{lstlisting}
-  \item Add a title to your graph, using \mcode{title} function. (1 new line)
-  \item Add fictional axes names to your graph, using \mcode{xlabel} and \mcode{ylabel} functions. (2 new lines)
-  \item Display a grid on your graph, using \mcode{grid} function. (1 new line)
-  \item Limit the x-axis display to the first 50 points, using \mcode xlim function. (1 new line)
-  \item Be proud of your first graph and save it as a .png file using \emph{File/Save As\dots} menu in the figure window.
+  \item Add a title to your graph, using the \mcode{title} function. (1 new line)
+  \item Add fictional axes names to your graph, using the \mcode{xlabel} and \mcode{ylabel} functions. (2 new lines)
+  \item Display a grid on your graph, using the \mcode{grid} function. (1 new line)
+  \item Limit the x-axis display to the first 50 points, using the \mcode{xlim} function. (1 new line)
+  \item Run your function in the command line.
+  \item Be proud of your first graph and \textbf{save} it as a .png file using \emph{File/Save As\dots} menu in the figure window.
 \end{enumerate}
-
 The final result should look like figure~\ref{fig:basic}.
 
+\textbf{Send this figure to your tutor by email, with group members names.}
 
-\subsection{Advanced plotting: subplots, images and histogram}
+
+\subsection{Advanced plotting: images and histograms}
 
 \begin{figure}
   \centering
   \includegraphics[width=0.7\textwidth]{advancedplot.pdf}
-  \caption{Advanced plot}\label{fig:adv}
+  \caption{Advanced plots}\label{fig:adv}
 \end{figure}
 
 You will give a try to more advanced graphical functions.
-The aim is to plot side-by-side an image and an histogram of some random data.
+The aim is to plot an image and an histogram of some random data.
 
-First, create a new function \mcode{testSubplot} in a new file \verb|testSubplot.m|.
+First, create a new function \mcode{testImage} in a new file \verb|testImage.m|.
 In this function, do the following steps that will lead you to success:
 \begin{enumerate}
-  \item create a 100-by-100 matrix of random data and store it in a variable \mcode{R1} (use \mcode{rand} function),
-  \item create a vector of 100 random numbers and store it in a variable \mcode{R2},
-  \item create a new empty figure window (use \mcode{figure} function),
-  \item create a new sub-plot on the left of the figure (use \mcode{subplot} function, check its documentation, especially examples),
-  \item display in this sub-plot \mcode{R1} as an image (use \mcode{imshow} or \mcode{imagesc}, check the difference between both),
-  \item create a second sub-plot on the right of the figure (use \mcode{subplot} again),
-  \item display the histogram of \mcode{R2} on this sub-plot (use \mcode{hist} or \mcode{histogram}),
-  \item save your figure as a .png image.
+  \item create a 100-by-100 matrix of random data and store it in a variable \mcode{R} (use the \mcode{rand} function),
+  \item create a new empty figure window (use the \mcode{figure} function),
+  \item display in this figure \mcode{R} as an image (use the \mcode{imagesc} function),
+  \item add a title (use the \mcode{title} function),
+  \item run your function in the command line and \textbf{save} your figure as a .png image.
 \end{enumerate}
+You should obtain something similar to figure~\ref{fig:adv}~(a).
 
-You should obtain something similar to figure~\ref{fig:adv}.
+Now, for the histogram, create a \mcode{testHist} function in a new file \verb|testHist.m|:
+\begin{enumerate}
+  \item create a vector of 100 random numbers and store it in a variable \mcode{R},
+  \item display the histogram of \mcode{R} on this figure (use \mcode{hist} or \mcode{histogram}),
+  \item run your function in the command line and \textbf{save} your figure as a .png image.
+\end{enumerate}
+You should obtain something similar to figure~\ref{fig:adv}~(b).
+
+\textbf{Send these figures to your tutor by email, with group members names.}
 
 
 \section{Conditional expressions with \emph{if\dots else} statement}
