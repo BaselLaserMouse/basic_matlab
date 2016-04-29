@@ -148,72 +148,63 @@ Try the following in the command line:
 'my first string!'         % create a string and echo it
 b = 'and the second one';  % assign a string to a variable, without echoing
 \end{lstlisting}
-This type of variable is useful to print custom messaged, as we will see later on.
-Keep that in a corner of your head.
+Strings are useful for printing custom messages and controlling more complicated
+operations in MATLAB, as we will see later on. 
 
-Sometimes, one may want to delete a variable, because it is not used anymore and use a lot of memory.
-To do so, you will use the \mcode{clear} command.
+Variables that are no longer needed can be deleted with the \mcode{clear} command.
 Type the following in the command line and check how the \textbf{workspace} panel changes:
 \begin{lstlisting}
-clear    % remove all variables
+clear    % remove all variables!
 a = 3    % new variable
 b = 4    % new variable
-clear a  % remove one variable
+clear a  % remove one variable only
 c = a    % assign a variable to another one and... surprise!
 \end{lstlisting}
-What happened at last line? Keep in mind that a variable need to exist in order to be used.
+What happened at last line? Keep in mind that a variable needs to exist in order to be used.
 
 
 \section{Using MATLAB functions}
 
-So far, you were limited to basic arithmetic.
-What if you want to do more advanced math? or control a little bit the interface?
-For these cases, MATLAB provides a huge number of functions to do all sort of operations.
+So far, you have seen only basic arithmetic.
+What if you want to do more advanced math, or start writing actual code?
+MATLAB provides a huge number of functions to do all sort of operations.
 
 To use a function, you need to type its name.
 In the command line, try typing \mcode{clc} and see what happens.
 
-If you want to now more about this function, you can use \mcode{help} command as follows: \\
+If you want to know more about this function, you can use the \mcode{help} command as follows: \\
 \verb|>> help clc| \\
 You can also use \mcode{doc} command to get an extended help, typing \mcode{doc clc}.
 
-A function can have inputs and outputs.
-Inputs are enclosed in parenthesis, after the function name, and separated by commas.
-You get back the output(s) using variable assignment.
+\mcode{clc} is a very simple function, with no inputs or outputs. Many functions
+have inputs and outputs. Inputs are enclosed in parenthesis, after the function name, 
+and separated by commas. You get back the output(s) using variable assignment, just as
+you've already done.
 
-Give a try with the \mcode{cos} function (cosine of an angle), typing the following:
+Give a try with the \mcode{round} function:
 \begin{lstlisting}
-clear         % remove all previously defined variables
-cos(3.14)     % cosine of Pi
-x = 3.14;     % create a new variable (no echoing)
-cos(x)        % cosine of the value of x
-y = cos(x);   % assign the result to a variable (no echoing)
-\end{lstlisting}
-
-What about a function that takes several inputs?
-Have a look to \mcode{rem} function, using \mcode{help} or \mcode{doc} command.
-Use this function to compute the remainder after division of 823 by 11.
-
-Some function can have optional inputs.
-A good example is the \mcode{round} function.
-Check its documentation using \mcode{help} to understand the difference between the following lines:
-\begin{lstlisting}
-clear  % remove all variables
 x = 4568.12;
 r1 = round(x);
+\end{lstlisting}
+What is the value of variable \mcode{r1}? The \mcode{round} function can also take
+more than one input argument:
+
+
+\begin{lstlisting}
 r2 = round(x, 0);
 r3 = round(x, -2);
 \end{lstlisting}
-What are the values in variables \mcode{r1}, \mcode{r2} and \mcode{r3} at the end?
-
-Congratulations, you've now learned the basics of entering information into the command-line.
+What are the values in variables \mcode{r2} and \mcode{r3}? Check 
+the function's documentation using \mcode{help} to understand what is going on.
+Congratulations, you've now learned the basics of entering information into the command-line!
 \todo{add a example with mod}
 
 \section{Writing your own functions}
 
 A MATLAB \textbf{function} is just a text file that contains MATLAB code.
 You will write them in the MATLAB editor and save them to disk.
-After they've been saved, you will be able to use (or ``run'' or ``call'') the function from the command line in the same way as you did with the functions above.
+After they've been saved, you will be able to use (or ``run'' or ``call'') the function 
+from the command line in the same way as you did with the \mcode{round} function, above.
 
 Open a new file (\emph{New} up at the top left of the GUI). \todo{add a figure?}
 Save the file to the current directory and call it \verb|adder.m|.
