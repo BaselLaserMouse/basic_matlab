@@ -33,13 +33,11 @@ Today you will learn the basics of MATLAB.
 
 MATLAB stores data in \textbf{variables} and these variables are manipulated by \textbf{functions}.
 There are simple functions for performing tasks such as multiplication and division.
-There are also more complex functions for doing things such as calculating averages, 
-plotting data, and doing statistical tests. Today you will learn the basic functions in 
-MATLAB as well as how to chain these together using \textbf{loops} and \textbf{logic statements} 
-to automate sequences of operations. This is the basis of programming.
+There are also more complex functions for doing things such as calculating averages, plotting data, and doing statistical tests.
+Today you will learn the basic functions in  MATLAB as well as how to chain these together using \textbf{loops} and \textbf{logic statements} to automate sequences of operations.
+This is the basis of programming.
 
-As you proceed you will doubtless get stuck. For help you should use the MATLAB 
-documentation that is built-in, Google, and ask for assistance.
+As you proceed you will doubtless get stuck. For help you should use the MATLAB documentation that is built-in, Google, and ask for assistance.
 
 
 \section{Starting MATLAB}
@@ -97,13 +95,13 @@ To conclude this first part, enter the following into the command line: \\
 \verb|>>| \mcode{\%This is a comment.} \\
 After pressing return, nothing should have happened.
 Any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't executed by MATLAB.
-We will use comments below to provide additional information to you. You will also see them 
-in functions you will be editing over the next few days.
+We will use comments below to provide additional information to you.
+You will also see them in functions you will be editing over the next few days.
 
 
 \section{Manipulating simple variables}
 
-A variable is a mechanism to keep track of a value by giving it to a `name'.
+A variable is a mechanism to keep track of a value by giving it to a ``name''.
 Variables are assigned with the \mcode{=} (equals) operator.
 The name of a variable is on the left of \mcode{=} and the value on the right, e.g.\\
 \verb|>> myvariable = 12|
@@ -138,7 +136,7 @@ By the way, what is the final value of \mcode{T}? and \mcode{t}?
 Be careful, variable names are case sensitive, so \mcode{T} and \mcode{t} are different variables!
 \todo{talk about fine names for variables?}
 
-If you want to know about the currently used variables, have a look to the \textbf{workspace} panel.
+If you want to know about the currently used variables, have a look at the \textbf{workspace} panel.
 There you will see names and values of your variables.
 
 So far, we have only been manipulating variables containing numbers, but other types of data can be used.
@@ -176,35 +174,32 @@ If you want to know more about this function, you can use the \mcode{help} comma
 \verb|>> help clc| \\
 You can also use \mcode{doc} command to get an extended help, typing \mcode{doc clc}.
 
-\mcode{clc} is a very simple function, with no inputs or outputs. Many functions
-have inputs and outputs. Inputs are enclosed in parenthesis, after the function name, 
-and separated by commas. You get back the output(s) using variable assignment, just as
-you've already done.
+\mcode{clc} is a very simple function, with no inputs or outputs.
+Many functions have inputs and outputs.
+Inputs are enclosed in parenthesis, after the function name, and separated by commas.
+You get back the output(s) using variable assignment, just as you've already done.
 
 Give a try with the \mcode{round} function:
 \begin{lstlisting}
 x = 4568.12;
 r1 = round(x);
 \end{lstlisting}
-What is the value of variable \mcode{r1}? The \mcode{round} function can also take
-more than one input argument:
-
-
+What is the value of variable \mcode{r1}? The \mcode{round} function can also take more than one input argument:
 \begin{lstlisting}
 r2 = round(x, 0);
 r3 = round(x, -2);
 \end{lstlisting}
-What are the values in variables \mcode{r2} and \mcode{r3}? Check 
-the function's documentation using \mcode{help} to understand what is going on.
+What are the values in variables \mcode{r2} and \mcode{r3}?
+Check the function's documentation using \mcode{help} to understand what is going on.
+
 Congratulations, you've now learned the basics of entering information into the command-line!
-\todo{add a example with mod}
+
 
 \section{Writing your own functions}
 
 A MATLAB \textbf{function} is just a text file that contains MATLAB code.
 You will write them in the MATLAB editor and save them to disk.
-After they've been saved, you will be able to use (or ``run'' or ``call'') the function 
-from the command line in the same way as you did with the \mcode{round} function, above.
+After they've been saved, you will be able to use (or ``run'' or ``call'') the function from the command line in the same way as you did with the \mcode{round} function, above.
 
 Open a new file (\emph{New} up at the top left of the GUI). \todo{add a figure?}
 Save the file to the current directory and call it \verb|adder.m|.
@@ -246,10 +241,10 @@ Is there any variable from the function (\mcode{varIN}, \mcode{doubledIN} or \mc
 It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
 Notice the comment describe what the function does. 
 
+
 \section{Manipulating multi-dimensional arrays}
 
-So far we've mainly worked with single numbers, but MATLAB really shows its power when you start 
-working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
+So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
 
 
 \subsection{Vectors and indexing}
@@ -307,6 +302,7 @@ t2 = t';  % transposing using a quote
 size(t2)  % size of the column vector
 \end{lstlisting}
 
+
 \subsection{Operations, filtering and functions on vectors}
 
 Arithmetic still works with vectors.
@@ -318,8 +314,7 @@ a = 10              % scalar variable
 t*10                % element-wise multiplication, using scalar expansion
 \end{lstlisting}
 
-It is also possible to convert a vector into a binary (0 or 1) vector using 
-comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
+It is also possible to convert a vector into a binary (0 or 1) vector using comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
 \footnote{%
   A very common syntax error that you \emph{will} make is to type \mcode{a=b} instead of \mcode{a==b}.
   Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
@@ -346,6 +341,7 @@ sigma = std(t)  % more mind-blowing statistics
 The last line presents a special way to handle functions that can return several outputs.
 What is returned in \mcode{xmax} and \mcode{idx} variables?
 What happen if you just type \mcode{xmax = max(t)}?
+
 
 \subsection{Matrices and other arrays}
 
@@ -380,10 +376,12 @@ The \mcode{:} (colon) operator is used to index a whole dimension.
 
 You have now learned to create, index and do some computations with vectors and arrays.
 
+
 \section{Making shiny graphs for your data}
 
 A large part of an analysis consists in summarizing your results.
 Making good graphs is one of the best ways to give a quick and clear view of your results.
+
 
 \subsection{Basic plotting of vector data}
 
@@ -439,6 +437,7 @@ hold off
 \end{enumerate}
 
 The final result should look like figure~\ref{fig:basic}.
+
 
 \subsection{Advanced plotting: subplots, images and histogram}
 
