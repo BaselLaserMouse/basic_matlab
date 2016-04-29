@@ -27,17 +27,19 @@
 MATLAB is a fairly simple programming language designed to make analysis of data easy.
 It is commonly used in academic research, industry, and finance.
 It is used across scientific disciplines, from biologists to engineers.
-During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, acquire new action potential data with electrodes, and analyse these data.
+During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, 
+acquire new action potential data with electrodes, and analyse these data.
 Today you will learn the basics of MATLAB.
 
 MATLAB stores data in \textbf{variables} and these variables are manipulated by \textbf{functions}.
 There are simple functions for performing tasks such as multiplication and division.
-There are also more complex functions for doing things such as calculating averages, fitting lines, and doing statistical tests.
-Today you will learn the basic functions in MATLAB as well as how to chain these together using \textbf{loops} and \textbf{logic statements} to automate sequences of operations.
-This is the basis of programming.
+There are also more complex functions for doing things such as calculating averages, 
+plotting data, and doing statistical tests. Today you will learn the basic functions in 
+MATLAB as well as how to chain these together using \textbf{loops} and \textbf{logic statements} 
+to automate sequences of operations. This is the basis of programming.
 
-As you proceed you will doubtless get stuck.
-For help you should use the MATLAB documentation that is built-in, Google, and ask for assistance.
+As you proceed you will doubtless get stuck. For help you should use the MATLAB 
+documentation that is built-in, Google, and ask for assistance.
 
 
 \section{Starting MATLAB}
@@ -63,7 +65,7 @@ See how it no longer echoes the number back to you?
 The \mcode{;} suppresses the echo.
 You will use this feature a lot so keep it in mind.
 
-Number are not limited to positive integers.
+Numbers are not limited to positive integers.
 You can also enter real numbers, for example \\
 \verb|>> 0.012| \\
 or with a scientific notation \\
@@ -80,9 +82,9 @@ Type the following into the command line (note we leave off the semicolon so you
 4 / 10
 4^3
 \end{lstlisting}
-What does the last line \mcode{4^3} do?
+What does the last line (\mcode{4^3}) do?
 
-Of course you can use several operators in the same line, but be careful with their priority.
+Of course you can use several operators on the same line, but be careful with their priority.
 You can force the order of the operations using parentheses.
 Compare the results from the following lines:
 \begin{lstlisting}
@@ -94,13 +96,14 @@ Compare the results from the following lines:
 To conclude this first part, enter the following into the command line: \\
 \verb|>>| \mcode{\%This is a comment.} \\
 After pressing return, nothing should have happened.
-Indeed, any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't executed by MATLAB.
-We will use these comments to provide additional information to you.
+Any lines starting with the \mcode{\%} symbol are \verb|comments| and aren't executed by MATLAB.
+We will use comments below to provide additional information to you. You will also see them 
+in functions you will be editing over the next few days.
 
 
 \section{Manipulating simple variables}
 
-A variable is a mechanism to keep track of a value with a name.
+A variable is a mechanism to keep track of a value by giving it to a `name'.
 Variables are assigned with the \mcode{=} (equals) operator.
 The name of a variable is on the left of \mcode{=} and the value on the right, e.g.\\
 \verb|>> myvariable = 12|
@@ -114,7 +117,7 @@ a = r      % assigning one variable to another
 a          % display the value of the variable
 \end{lstlisting}
 
-If you assign several times values to the same variable, values are replaced in turns.
+A variable always retains the last value assigned to it. e.g.
 \begin{lstlisting}
 t = 2  % previous value replaced by 2
 t = 3  % value 2 replaced by 3
@@ -132,7 +135,7 @@ T = t^3     % raising to the third power
 \end{lstlisting}
 
 By the way, what is the final value of \mcode{T}? and \mcode{t}?
-Be careful, variables names are case sensitive, so \mcode{T} and \mcode{t} are different variables!
+Be careful, variable names are case sensitive, so \mcode{T} and \mcode{t} are different variables!
 \todo{talk about fine names for variables?}
 
 If you want to know about the currently used variables, have a look to the \textbf{workspace} panel.
@@ -222,14 +225,14 @@ function adder
   myOtherVariable = 101;
 end
 \end{lstlisting}
-A function definition file always start with \mcode{function} keyword, and end with \mcode{end} keyword.
+A function definition file always start with \mcode{function} keyword.
 The function name, and possible inputs/outputs, are written after \mcode{function}.
-Here there is no input nor output to this function.
+Here there are no inputs or outputs.
 
 Use the function by typing \mcode{adder} into the command line and check defined variables in the \textbf{workspace} panel. What do you see?
 Notice how the variables \mcode{myVariable} and \mcode{myOtherVariable} defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
 
-This fact is called \textbf{scope}.
+This property is called \textbf{scope}.
 The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function.
 They are created when \mcode{adder} runs and they are cleaned up when it ends.
 This is a very important programming concept and you should keep it in mind.
@@ -250,15 +253,13 @@ At the command line you will type, for example: \mcode{A = adder(34)}.
 Check in the \textbf{workspace} panel the existing variables.
 Is there any variable from the function (\mcode{varIN}, \mcode{doubledIN} or \mcode{OUT})?
 It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
-
-Notice the second line full of human readable words?
-This line of comments is not used by MATLAB to compute the result but documents what is happening in the function.
-When you start writing your own functions you should be using comments all the time to make your code easier to read at a later time.
-
+Notice the comment describe what the function does. 
 
 \section{Manipulating multi-dimensional arrays}
 
-So far we've mainly worked with single numbers, but MATLAB really shows its power when you start working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
+So far we've mainly worked with single numbers, but MATLAB really shows its power when you start 
+working with \textbf{vectors}, \textbf{matrices} and more general multi-dimensional \textbf{arrays}.
+
 
 \subsection{Vectors and indexing}
 
@@ -282,11 +283,12 @@ step = 5;
 stop = 100;
 t = start:step:stop  % using variables instead of values
 \end{lstlisting}
-How would you create the vector \mcode{[5,8,11,14]} using this syntax? What about \mcode{[-1,-2,-3,-4]}?
+Enter code into the command line to create the vector \mcode{[5,8,11,14]} using this syntax. 
+Now try \mcode{[-1,-2,-3,-4]}?
 
-You will now learn how to \textbf{index} the vector.
+You will now learn how to \textbf{index} vectors.
 Indexing is \emph{very important}.
-Basically, ``indexing'' is the process of accessing sub-portions of the vector.
+Basically, ``indexing'' is the process of accessing sub-portions of a vector.
 Go through the following at the command line.
 If any of it does not make sense you should ask someone for help.
 \begin{lstlisting}
@@ -300,9 +302,9 @@ t(end)      % access to the last element
 t(1:2:end)  % access elements at odd indices
 \end{lstlisting}
 
-To check the actual size of a vector, you can use \mcode{length}, \mcode{size} or \mcode{numel} functions.
+To check the size of a vector, you can use the \mcode{length}, \mcode{size} or \mcode{numel} functions.
 Try all three functions on the \mcode{t} variable. What is the difference?
-Have a look to the documentation of these functions.
+If it's not clear have a look to the documentation of these functions.
 
 The variable \mcode{t} is a row vector (1 row).
 You can turn it into a column vector (1 column) by transposing it, using a single quote \mcode{'}.
@@ -317,7 +319,7 @@ size(t2)  % size of the column vector
 \subsection{Operations, filtering and functions on vectors}
 
 Arithmetic still works with vectors.
-You can easily add, subtract, multiply, etc. all elements of an array by a number.
+You can easily add, subtract, multiply, etc, all elements of an array by a number.
 Try the following:
 \begin{lstlisting}
 t = [1,3,-1,2.1]
@@ -325,7 +327,8 @@ a = 10              % scalar variable
 t*10                % element-wise multiplication, using scalar expansion
 \end{lstlisting}
 
-It is also possible to convert a vector into a binary (0 or 1) vector using comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
+It is also possible to convert a vector into a binary (0 or 1) vector using 
+comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
 \footnote{%
   A very common syntax error that you \emph{will} make is to type \mcode{a=b} instead of \mcode{a==b}.
   Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
