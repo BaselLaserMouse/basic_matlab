@@ -42,9 +42,23 @@ As you proceed you will doubtless get stuck. For help you should use the MATLAB 
 
 \section{Starting MATLAB}
 
-\todo[inline]{Start MATLAB from the Windows start menu.}
-\todo[inline]{Add section on navigating the command line window, opening an m-file, and the system path.}
-\todo[inline]{Describe the ribbon.}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{interface.pdf}
+  \caption{MATLAB interface major components}\label{fig:interface}
+\end{figure}
+
+On Linux machines, use \emph{Applications/Education/Matlab} menu entry to start MATLAB.
+You should see an interface similar to figure~\ref{fig:interface}.
+
+Take 2 minutes to identify the two major components you will deal with:
+\begin{itemize}
+\item the \textbf{command line}, which you'll use to interact with MATLAB,
+\item the \textbf{workspace} panel, where you'll keep track of manipulated data (variables in fact).
+\end{itemize}
+
+Finally, spot the \textbf{New Script} button, that will be useful to create new \textbf{function} files,
+and the \textbf{change directory} button to change the current directory you will be working in.
 
 
 \section{Working at the command line}
@@ -201,9 +215,9 @@ A MATLAB \textbf{function} is just a text file that contains MATLAB code.
 You will write them in the MATLAB editor and save them to disk.
 After they've been saved, you will be able to use (or ``run'' or ``call'') the function from the command line in the same way as you did with the \mcode{round} function, above.
 
-Open a new file (\emph{New} up at the top left of the GUI). \todo{add a figure?}
+Open a new file (\emph{New Script} up at the top left of the GUI).
 Save the file to the current directory and call it \verb|adder.m|.
-The current directory is displayed up at the top. \todo{add figure?}
+The current directory is displayed up at the top.
 Type the following into your file in the editor and save it:
 \begin{lstlisting}
 function adder
