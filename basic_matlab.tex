@@ -29,7 +29,7 @@
 
 MATLAB is a fairly simple programming language designed to make analysis of data easy.
 It is commonly used in academic research, industry, and finance.
-Today you will learn the basics of MATLAB. 
+Today you will learn the basics of MATLAB.
 Once you have mastered this, on the remaining three days you will get to do more exciting stuff such as analyze real 2-photon imaging data from mice, acquire your own action potential data with electrodes, and then analyse these data.
 
 
@@ -37,15 +37,15 @@ Once you have mastered this, on the remaining three days you will get to do more
 \begin{itemize}
 \item That MATLAB stores data in \textbf{variables}.
 \item How MATLAB variables store lists of numbers and text (`strings').
-\item How variables are manipulated by \textbf{functions}. e.g. to perform mathematical operations and plot data. 
+\item How variables are manipulated by \textbf{functions}. e.g. to perform mathematical operations and plot data.
 \item Chaining functions together using \textbf{loops} and \textbf{logic statements} to automate sequences of operations.
 \end{itemize}
 
 An important aspect of today's practical is that you learn how to use MATLAB's help and documentation.
 Pay attention where we ask you read help and documentation pages. Ask us if the documentation does not make sense to you.
-If you get stuck, first try to look up your problem using MATLAB's documentation or Google. 
+If you get stuck, first try to look up your problem using MATLAB's documentation or Google.
 If you continue to be stuck, ask for help.
-\textbf{\textit{You will not be able to complete subsequent practical sessions if you have not understood} all \textit{the concepts covered today}}. 
+\textbf{\emph{You will not be able to complete subsequent practical sessions if you have not understood} all \emph{the concepts covered today}}.
 If you are confused: ask for assistance.
 
 \pagebreak
@@ -59,7 +59,7 @@ Take two minutes to identify the two major components you will deal with:
 \end{itemize}
 
 Finally, note the \textbf{New Script} button, that will be useful to create new \textbf{function} files,
-and the \textbf{change directory} button to change the current directory you will be working in. MATLAB will 
+and the \textbf{change directory} button to change the current directory you will be working in. MATLAB will
 look for the functions you write in the current directory.
 
 \begin{figure}[h]
@@ -72,9 +72,9 @@ look for the functions you write in the current directory.
 
 \subsection*{Experience the power of MATLAB: the command line}
 Throughout today you will be typing stuff in to the \textbf{command line}, where you see the \verb|>>| symbol.
-We will be asking you to type commands in the space after the \verb|>>| symbol. 
-To get you started, let's see the power of MATLAB using a few lines of code. 
-Type the following \textit{exactly} as shown into the command line and press return after each line.\\
+We will be asking you to type commands in the space after the \verb|>>| symbol.
+To get you started, let's see the power of MATLAB using a few lines of code.
+Type the following \emph{exactly} as shown into the command line and press return after each line.\\
 
 \begin{itemize}
 \item Get MATLAB to download an image from the internet using the \mcode{webread} \textbf{function}:\\
@@ -89,11 +89,11 @@ Type the following \textit{exactly} as shown into the command line and press ret
 \verb|clear im|\\
 \end{itemize}
 
-Good stuff: that was your first experience of the power of MATLAB. 
+Good stuff: that was your first experience of the power of MATLAB.
 As you can see, it's  scary stuff: you downloaded an image, displayed it, modified it, then got rid of it.
 But what exactly do all those commands do?
 By the end of today you will have learned enough to easily understand what was going on in the above code.
-Let's dive in\ldots 
+Let's dive in\ldots
 
 \pagebreak
 \section{Calculations in MATLAB}
@@ -119,9 +119,9 @@ and negative values, using a \mcode{-} (minus) sign:\\
 \verb|>> -3.5| \\
 
 Now let's look at basic arithmetic operators.
-Type the following into the command line. 
-We leave off the semicolon so you can see the output. 
-The small numbers to the left are just line number labels, do not type them into the command line. 
+Type the following into the command line.
+We leave off the semicolon so you can see the output.
+The small numbers to the left are just line number labels, do not type them into the command line.
 
 \begin{lstlisting}
 4 + 10
@@ -190,10 +190,9 @@ Try the following in the command line:
 'my first string!'         % create a string and echo it
 b = 'and the second one';  % assign a string to a variable, without echoing
 \end{lstlisting}
-Strings are useful for printing custom messages and controlling more complicated
-operations in MATLAB, as we will see later on. 
+Strings are useful for printing custom messages and controlling more complicated operations in MATLAB, as we will see later on.
 
-Variables that are no longer needed can be deleted with the \mcode{clear} command. 
+Variables that are no longer needed can be deleted with the \mcode{clear} command.
 Type \mcode{clear} and see what happens to your variables. You can no longer access
 \mcode{t} and \mcode{T}.
 
@@ -260,7 +259,7 @@ Use the function by typing \mcode{adder} into the command line and check defined
 Notice how the variables \mcode{myVariable} and \mcode{myOtherVariable} defined in the \mcode{adder} function are not present in the \textbf{base workspace}, i.e. the variables available to you in the command line.
 
 This property is called \textbf{scope}.
-The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function. 
+The variables in your \mcode{adder} function exist only in the scope of the \mcode{adder} function.
 So only code in the \mcode{adder} function can see the variables created within it.
 The variables are created when \mcode{adder} starts and they are cleaned up when it ends.
 This is a very important programming concept and you should keep it in mind.
@@ -269,7 +268,7 @@ Let's make \mcode{adder} \emph{do} something and return information to the comma
 We will define a \textbf{parameter} (an ``input variable'') called \mcode{varIN} and have \mcode{adder} multiply this by 2 then subtract 1.
 Finally it will return the result to the workspace via an ``output variable'', \mcode{OUT}.
 Modify \mcode{adder} so that it reads as follows, then save it.
-Notice the comment line, which describes what the function does. 
+Notice the comment line, which describes what the function does.
 \begin{lstlisting}
 function OUT = adder(varIN)
   % the adder function multiplies by 2 then subtracts 1
@@ -327,7 +326,7 @@ t(1:2:end)  % access elements at odd indices
 \end{lstlisting}
 
 To check the size of a vector, you can use the \mcode{length}, \mcode{size} or \mcode{numel} functions.
-Go to the help pages for these functions and read about them. 
+Go to the help pages for these functions and read about them.
 Try all three functions on the \mcode{t} variable. Is their any difference?
 
 \pagebreak
@@ -346,15 +345,15 @@ You can easily add, subtract, multiply, etc, all elements of an array by a numbe
 Try the following:
 \begin{lstlisting}
 t = [1,3,-1,2.1]
-a = 10              % scalar variable
-t*10                % element-wise multiplication, using scalar expansion
+a = 10            % scalar variable
+t*10              % element-wise multiplication, using scalar expansion
 \end{lstlisting}
 
 \subsection{Logic operations, filtering, and functions on vectors}
 
 What if you have a long vector and you want to keep, say, only the numbers which have a value greater than zero?
-Obviously you don't want to do this manually. 
-Instead, you will use \textbf{logic operators} to \textbf{filter} the vector. 
+Obviously you don't want to do this manually.
+Instead, you will use \textbf{logic operators} to \textbf{filter} the vector.
 The logic operators available to you are:
 \begin{itemize}
 \item {==} (equals to)
@@ -365,17 +364,17 @@ The logic operators available to you are:
 \item \mcode{>=} (greater than or equals to)
 \end{itemize}
 
-Let's first see how the logic operators work on single numbers before exploring vectors. 
+Let's first see how the logic operators work on single numbers before exploring vectors.
 Try the following at the command line:
 \begin{lstlisting}
 t = 96;
-t < 100         % Test if t is less than 100
-t > 100         % Test if t is greater than 100
-t == 96         % test if t is equal to 96
+t < 100  % test if t is less than 100
+t > 100  % test if t is greater than 100
+t == 96  % test if t is equal to 96
 \end{lstlisting}
 
-See the way MATLAB returns \mcode{0} when the test if false and \mcode{1} when the test is true? 
-In this instance \mcode{0} and \mcode{1} are logic values to indicate true or false. 
+See the way MATLAB returns \mcode{0} when the test if false and \mcode{1} when the test is true?
+In this instance \mcode{0} and \mcode{1} are logic values to indicate true or false.
 Now you should write a line of code that tests whether \mcode{t} is not equal to 60.
 This line should, of course, return true.
 
@@ -389,7 +388,7 @@ See the way \mcode{L} has the value \mcode{1}?
 The code looks confusing, but remember that that \mcode{=} means ``assign the number on the right to the variable on the left'' and \mcode{==} means ``is equal to''.
 A common error that we all make is to type \mcode{a=b} instead of \mcode{a==b}.
 
-The above logic operations also work on vectors. 
+The above logic operations also work on vectors.
 They are used to create a binary vector ``mask'' that can be used to filter another vector of the same size.
 Test the following in the command line:
 \begin{lstlisting}
@@ -425,7 +424,7 @@ You will also handle vector data, such as voltage traces from an electrical reco
 
 In the following exercise you will learn how to make a matrix ``by hand'' and how to index it.
 \begin{lstlisting}
-t = [1,2,3,90; 4,5,6,90] % make an array with two rows and four columns
+t = [1,2,3,90; 4,5,6,90]  % make an array with two rows and four columns
 size(t)
 \end{lstlisting}
 Try the \mcode{numel} and \mcode{length} functions on this matrix.
@@ -453,8 +452,8 @@ You have now learned to create, index and do some computations with vectors and 
 \section{Making shiny graphs for your data}
 
 A large part of an analysis consists in summarizing your results.
-Making good graphs is \textit{the} best way to give a quick and clear view of your results.
-Statistical tests are generally done \textit{after} you have plotted your data. e.g. to add error bars or calculate p-values.
+Making good graphs is \emph{the} best way to give a quick and clear view of your results.
+Statistical tests are generally done \emph{after} you have plotted your data. e.g. to add error bars or calculate p-values.
 
 
 \subsection{Basic plotting of vector data}
@@ -483,13 +482,13 @@ You are aiming to produce something like Figure~\ref{fig:basic}.
 \end{figure}
 
 
-Below are summarised the steps you will have to complete to produce the final graph. 
+Below are summarised the steps you will have to complete to produce the final graph.
 Remember, you can (and \emph{should}) look at the documentation of the functions we will mention.
 After completing each step, run your function (typing \mcode{testPlot} in the command line) to see your progress and check for errors.
 \begin{enumerate}
   \item Use the \mcode{clf} command to clear the current figure (if present) or open a new empty figure window (1 new line).
   \item Add a line that uses the \mcode{plot} function to display \mcode{R1} with the default settings (1 new line). Then run your code using
-  \mcode{testPlot(100)}, to plot 100 random numbers. 
+  \mcode{testPlot(100)}, to plot 100 random numbers.
   \item Confirm that changing the value of the input argument changes the plot as expected.
   \item \mcode{plot} can take a \textbf{string} input defining the type of the line.
     Look for \emph{LineSpec} information in \mcode{plot} documentation and/or look at the provided examples in the documentation.
@@ -515,18 +514,17 @@ hold off
 \end{enumerate}
 
 \textbf{We will look at your work}: \\
-Send this figure and the function file you wrote to ``\verb|student_results@mouse.vision|''. 
+Send this figure and the function file you wrote to ``\verb|student_results@mouse.vision|''.
 The e-mail Subject should be ``Basic Plotting'' and you should include your group member names in the body.
 
 \pagebreak
 \subsection{Advanced plotting: defining axis properties}
 
-Now we will plot something relevant and important to many people. 
-You will be plotting Google search volume data for a \textit{mystery} search term. 
-We're not telling you what the search term is right now. 
+Now we will plot something relevant and important to many people.
+You will be plotting Google search volume data for a \emph{mystery} search term.
+We're not telling you what the search term is right now.
 Create a new function file called ``googleTrends.m'' and type the following into it as you go.
-Run it after each line is entered to check for errors. 
-\\
+Run it after each line is entered to check for errors.\\
 
 First, you have to download the data that originally came from Google Trends:\\
 \verb|>> urlwrite('http://mouse.vision/gt.csv','gt.csv');|\\
@@ -536,19 +534,19 @@ The data were saved to disk. So read the data into MATLAB and plot them:\\
 \verb|>> plot(gt)|\\
 \verb|>> ylabel('search volume')|\\
 
-Each data point shows the search volume for that week for this particular search term. 
+Each data point shows the search volume for that week for this particular search term.
 Let's add one tick mark per year:\\
 \verb|>> set(gca,'XTick',0:52:700)|\\
 
-That was a new command you've not seen before. 
-We won't explain it now, but it should be fairly obvious what it does. 
+That was a new command you've not seen before.
+We won't explain it now, but it should be fairly obvious what it does.
 Let's label the tick marks by year:\\
 \verb|>> set(gca,'XTickLabel',2004:2017)|\\
 
-Each year marker is placed at January of that year. 
+Each year marker is placed at January of that year.
 Based on this graph, when did the peak popularity for this search term occur?
-Hmmm\ldots so what could this search term be? 
-Yell out your suggestions \textbf{very loudly}. 
+Hmmm\ldots so what could this search term be?
+Yell out your suggestions \textbf{very loudly}.
 
 
 \pagebreak
@@ -581,12 +579,12 @@ Now, for the next graph: the histogram! Create a \mcode{testHist} function in a 
   \item display the histogram of \mcode{R} on this figure (use \mcode{hist} or \mcode{histogram}),
   \item run your function in the command line and \textbf{save} your figure as a .png image.
 \end{enumerate}
-You should obtain something similar to Figure~\ref{fig:adv}~(b). 
-If that was too easy for you and you want a challenge, try making the histogram bars red and increasing the number of bins in the histogram. 
-Otherwise, proceed to the next section. 
+You should obtain something similar to Figure~\ref{fig:adv}~(b).
+If that was too easy for you and you want a challenge, try making the histogram bars red and increasing the number of bins in the histogram.
+Otherwise, proceed to the next section.
 
 \textbf{We will look at your work}: \\
-Send these figures and the function files you wrote to ``\verb|student_results@mouse.vision|''. 
+Send these figures and the function files you wrote to ``\verb|student_results@mouse.vision|''.
 Ensure the Subject is ``Advanced Plotting'' and that you include your group member names in the body.
 
 \pagebreak
@@ -594,17 +592,17 @@ Ensure the Subject is ``Advanced Plotting'' and that you include your group memb
 \section{Conditional expressions with \emph{if\dots else} statement}
 
 \textbf{Conditional expressions} are really important since they allow you to add logic to a function.
-In other words, conditional expressions allow you to make certain events happen only under certain conditions. 
+In other words, conditional expressions allow you to make certain events happen only under certain conditions.
 For example, you could use a conditional expression to make a plot only if a vector is longer than a certain length.
 
-Let's get started by looking at \mcode{if} statements. 
+Let's get started by looking at \mcode{if} statements.
 The conditional expression starts with the \mcode{if} keyword, followed by the condition, then the code to be executed if the condition is true, and finally the \mcode{end} keyword to close the expression.
 Type the following in a new function called \mcode{testIf.m}
 \begin{lstlisting}
 function testIf(a)
   if a < 10
     disp('a is less than 10')
-  elseif a > 10 
+  elseif a > 10
   	disp('a is greater than 10')
   end
   disp('this always runs')
@@ -637,7 +635,7 @@ function testForLoop(N)
 
 \end{lstlisting}
 
-Run it with \mcode{N} being 20. What happens? Now try N being 5. 
+Run it with \mcode{N} being 20. What happens? Now try N being 5.
 
 As you can see, the \textbf{for} loop starts with the \mcode{for} keyword, followed by the increment expression (e.g. \mcode{ii=1:10}), then the code for what happens in each pass through the loop and finally the \mcode{end} keyword to close the loop definition.
 At each iteration, the loop variable (\mcode{ii} in the above example loop) gets the next value from the vector defined on the right of the \mcode{=} (equal) symbol. If this is confusing, please ask for help.
@@ -652,7 +650,7 @@ function multiplyLoop(N)
 
   % HERE, YES RIGHT HERE, YOU SHOULD PUT A LOOP.
 
-  disp(R1)        % display updated R1
+  disp(R1)          % display updated R1
 \end{lstlisting}
 
 In general, even if loops are great, you can do the same operations more efficiently using array indexing and functions.
@@ -660,14 +658,14 @@ Add a line at the end of the function that multiplies \mcode{R1} by \mcode{N} wi
 
 
 \textbf{We will look at your work}: \\
-Send the function file you wrote to ``\verb|student_results@mouse.vision|''. 
+Send the function file you wrote to ``\verb|student_results@mouse.vision|''.
 Ensure the Subject is ``For Loops'' and that you include your group member names in the body.
 
 
 \pagebreak
 \section{(Bonus) More exercises}
 
-If the above was easy and you finished quickly, try the following exercises. 
+If the above was easy and you finished quickly, try the following exercises.
 Each of these should be done in a separate function file.
 
 \begin{enumerate}
