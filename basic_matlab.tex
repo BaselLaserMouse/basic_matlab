@@ -597,78 +597,50 @@ Ensure the Subject is ``Advanced Plotting'' and that you include your group memb
 In other words, conditional expressions allow you to make certain events happen only under certain conditions. 
 For example, you could use a conditional expression to make a plot only if a vector is longer than a certain length.
 
-Let's get started by looking at \mcode{if} statements. Type the following in a new function called \mcode{testIf}
+Let's get started by looking at \mcode{if} statements. 
+The conditional expression starts with the \mcode{if} keyword, followed by the condition, then the code to be executed if the condition is true, and finally the \mcode{end} keyword to close the expression.
+Type the following in a new function called \mcode{testIf.m}
 \begin{lstlisting}
 function testIf(a)
-  if a < 0
-    disp('a is negative')
+  if a < 10
+    disp('a is less than 10')
+  elseif a > 10 
+  	disp('a is greater than 10')
   end
   disp('this always runs')
 \end{lstlisting}
 
 Now run your code using \mcode{testIf(2)} (this makes the variable \mcode{a} take on the value 2).
-What happens?
-What happens if you run your function with the input being \mcode{-3}?
+What happens? \\
+What happens if you run your function with the input being \mcode{42}?\\
+What happens if you run your function with the input being \mcode{10}?\\
+Can you make the function report when the input is \mcode{10}? Hint: the \mcode{else} keyword.
 
+You have now learned the basics of logic statements!
 
-The conditional expression starts with the \mcode{if} keyword, followed by the condition, then the code to be executed if the condition is true, and finally the \mcode{end} keyword to close the expression.
-In the previous example, depending on the value of \mcode{a}, the condition \mcode{a < 0} is true or false, and line 4 gets executed or not.
-
-If the first condition is false, you can add another condition using the \mcode{elseif} keyword, with its own code to determine what is true.
-Note that it is possible to chain several \mcode{elseif} conditions.
-In case you want to execute something if all previous conditions were false, you can use an \mcode{else} keyword followed by the code to be executed.
-
-Here is an example that make use of all these constructs.
-Change the value of the input variable \mcode{a} and see how the function behaves.
-Note also that we have added an output argument that causes the function to return ``true'' if \mcode{a==1}. 
-You should verify this. 
-\begin{lstlisting}
-function aEqualedOne = testIf(a)
-  if a < 0
-    disp('a is negative')
-    aEqualedOne=false;
-  elseif a >= 5
-    disp('a is superior or equal to 5')
-    aEqualedOne=false;
-  elseif a == 1
-    disp('a is equal to 1')
-    aEqualedOne=true;
-  else
-    disp('a is 2, 3 or 4')
-    disp('this always runs')
-    aEqualedOne=false;
-\end{lstlisting}
-
-
+\pagebreak
 
 
 \section{Repeating operations with \emph{for} loops}
 
-Sometimes you might want to repeat some actions a finite number of times.
-This is done using \textbf{for} loops, that are created with MATLAB's \mcode{for} keyword.
-A \textbf{for} loop is used when the number of repetitions is known in advance.
-The following function gives you a typical example:
+Let's run the previous function, \mcode{testIf}, many times in an automated way.
+First of all, remove the final \mcode{disp} command in \mcode{testIf} and re-save the function file.
+Now create a new function called \mcode{testForLoop} and type the following into it:
+
 \begin{lstlisting}
 function testForLoop(N)
   % loop from 1 to N times
   for ii=1:N
-    disp('Loop 1')
     disp(ii)  % display current value of ii
+    testIf(ii)
   end
 
-  % loop from 1 to 100, with increment of 10
-  for jj=1:10:100
-    disp('Loop 2')
-    disp(jj)  % display current value of jj
-  end
 \end{lstlisting}
 
-Choose a value for N as an input argument and run the function.
-How many lines are printed by MATLAB when you run this function?
-Quite a lot compared to the number of lines written, isn't it?
+Run it with \mcode{N} being 20. What happens? Now try N being 5. 
 
-The \textbf{for} loop starts with the \mcode{for} keyword, followed by the increment expression (e.g. \mcode{ii=1:10}), then the code for what happens in each pass through the loop and finally the \mcode{end} keyword to close the loop definition.
-At each iteration, the loop variable (\mcode{ii} and \mcode{jj} in the above example loops) gets the next value from the vector defined on the right of the \mcode{=} (equal) symbol. If this is confusing, please ask for help.
+As you can see, the \textbf{for} loop starts with the \mcode{for} keyword, followed by the increment expression (e.g. \mcode{ii=1:10}), then the code for what happens in each pass through the loop and finally the \mcode{end} keyword to close the loop definition.
+At each iteration, the loop variable (\mcode{ii} in the above example loop) gets the next value from the vector defined on the right of the \mcode{=} (equal) symbol. If this is confusing, please ask for help.
 
 Complete the following function to make it multiply each element of the variable \mcode{R1} by N:
 \begin{lstlisting}
@@ -692,7 +664,7 @@ Send the function file you wrote to ``\verb|student_results@mouse.vision|''.
 Ensure the Subject is ``For Loops'' and that you include your group member names in the body.
 
 
-
+\pagebreak
 \section{(Bonus) More exercises}
 
 If the above was easy and you finished quickly, try the following exercises. 
