@@ -50,11 +50,8 @@ If you are confused: ask for assistance.
 
 \pagebreak
 \section{Starting MATLAB}
-
-
 On Linux machines, use \emph{Applications/Education/Matlab} menu entry to start MATLAB.
 You should see an interface similar to Figure~\ref{fig:interface}.
-
 Take two minutes to identify the two major components you will deal with:
 \begin{itemize}
 \item the \textbf{command line}, which you'll use to interact with MATLAB,
@@ -71,31 +68,38 @@ look for the functions you write in the current directory.
   \caption{MATLAB interface major components}\label{fig:interface}
 \end{figure}
 
+\pagebreak
+
 \subsection*{Experience the power of MATLAB: the command line}
 Throughout today you will be typing stuff in to the \textbf{command line}, where you see the \verb|>>| symbol.
-Will be asking you to type commands in the space after the \verb|>>| symbol. 
+We will be asking you to type commands in the space after the \verb|>>| symbol. 
 To get you started, let's see the power of MATLAB using a few lines of code. 
 Type the following \textit{exactly} as shown into the command line and press return after each line.\\
 
 \begin{itemize}
-\item Get MATLAB to download an image from the internet:\\
+\item Get MATLAB to download an image from the internet using the \mcode{webread} \textbf{function}:\\
 \verb|im=webread('http://mouse.vision/pic.jpg');|\\
 \item Get MATLAB to show this image (WARNING: image isn't pretty):\\
 \verb|imshow(im)|\\
 \item Let's attempt to increase the elegance of the image. Black and white should help:\\
-\verb|imshow( im(:,:,1) )|\\
+\verb|imshow( im(:,:,2) )|\\
+\item That didn't help very much. Let's get rid this horrible image:\\
+\verb|close all|\\
+\item That's better. Lets also get rid of the \textbf{variable}, \mcode{im}, that produced it:\\
+\verb|clear im|\\
 \end{itemize}
 
 Good stuff: that was your first experience of the power of MATLAB. 
-As you can see, it's scary stuff. 
-By the end of today, you will have learned enough to easily understand what was going on in the above code.
+As you can see, it's  scary stuff: you downloaded an image, displayed it, modified it, then got rid of it.
+But what exactly do all those commands do?
+By the end of today you will have learned enough to easily understand what was going on in the above code.
 Let's dive in\ldots 
 
 \pagebreak
 \section{Calculations in MATLAB}
 
 We will begin by treating MATLAB as a graphical calculator.
-Take a deep breath and type a number into the command line, e.g. \\
+This is less interesting than what you just did, but we have to cover the basics first.
 
 \verb|>>| \mcode{1} \\
 then press return. \\
@@ -163,23 +167,18 @@ a          % display the value of the variable
 
 A variable always retains the last value assigned to it. e.g.
 \begin{lstlisting}
-t = 2  % previous value replaced by 2
-t = 3  % value 2 replaced by 3
+t = 2   % previous value replaced by 2
+t = 3   % value 2 replaced by 3
+T = 100 % A new variable! Upper and lower-case variables are not the same!
 \end{lstlisting}
 
-You can use variables in place of values for arithmetic operations.
-Type the following in the command line:
+As before, you can use variables in place of values for arithmetic operations.
 \begin{lstlisting}
 t = 2;
 T = t + 10  % addition
-T = t - 10  % subtraction
 T = t * 2   % multiplication
-T = t / 10  % division
-T = t^3     % raising to the third power
+%etc...
 \end{lstlisting}
-
-What is the final value of \mcode{T}? and \mcode{t}?
-Variable names are case sensitive, so \mcode{T} and \mcode{t} are different variables!%
 
 If you want to know about the currently used variables, have a look at the \textbf{workspace} panel.
 There you will see names and values of your variables.
@@ -194,16 +193,11 @@ b = 'and the second one';  % assign a string to a variable, without echoing
 Strings are useful for printing custom messages and controlling more complicated
 operations in MATLAB, as we will see later on. 
 
-Variables that are no longer needed can be deleted with the \mcode{clear} command.
-Type the following in the command line and check how the \textbf{workspace} panel changes:
-\begin{lstlisting}
-clear    % remove all variables!
-a = 3    % new variable
-b = 4    % new variable
-clear a  % remove one variable only
-c = a    % assign a variable to another one and... surprise!
-\end{lstlisting}
-What happened at last line? Keep in mind that a variable needs to exist in order to be used.
+Variables that are no longer needed can be deleted with the \mcode{clear} command. 
+Type \mcode{clear} and see what happens to your variables. You can no longer access
+\mcode{t} and \mcode{T}.
+
+\pagebreak
 
 
 \section{Using MATLAB functions}
