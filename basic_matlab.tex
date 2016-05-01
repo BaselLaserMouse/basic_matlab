@@ -29,10 +29,8 @@
 
 MATLAB is a fairly simple programming language designed to make analysis of data easy.
 It is commonly used in academic research, industry, and finance.
-It is used across scientific disciplines, from biologists to engineers.
-During this course, you will use MATLAB to analyse existing 2-photon imaging data from mice, 
-acquire new action potential data with electrodes, and analyse these data.
 Today you will learn the basics of MATLAB. 
+Once you have mastered this, on the remaining three days you will get to do more exciting stuff such as analyze real 2-photon imaging data from mice, acquire your own action potential data with electrodes, and then analyse these data.
 
 
 \subsection*{What you will learn today}
@@ -73,14 +71,32 @@ look for the functions you write in the current directory.
   \caption{MATLAB interface major components}\label{fig:interface}
 \end{figure}
 
+\subsection*{Experience the power of MATLAB: the command line}
+Throughout today you will be typing stuff in to the \textbf{command line}, where you see the \verb|>>| symbol.
+Will be asking you to type commands in the space after the \verb|>>| symbol. 
+To get you started, let's see the power of MATLAB using a few lines of code. 
+Type the following \textit{exactly} as shown into the command line and press return after each line.\\
+
+\begin{itemize}
+\item Get MATLAB to download an image from the internet:\\
+\verb|im=webread('http://mouse.vision/pic.jpg');|\\
+\item Get MATLAB to show this image (WARNING: image isn't pretty):\\
+\verb|imshow(im)|\\
+\item Let's attempt to increase the elegance of the image. Black and white should help:\\
+\verb|imshow( im(:,:,1) )|\\
+\end{itemize}
+
+Good stuff: that was your first experience of the power of MATLAB. 
+As you can see, it's scary stuff. 
+By the end of today, you will have learned enough to easily understand what was going on in the above code.
+Let's dive in\ldots 
+
 \pagebreak
-\section{Working at the command line}
+\section{Calculations in MATLAB}
 
 We will begin by treating MATLAB as a graphical calculator.
-We will start off at the \textbf{command line}, where you see the \verb|>>| symbol.
-You type commands in the space after the \verb|>>| symbol.
-
 Take a deep breath and type a number into the command line, e.g. \\
+
 \verb|>>| \mcode{1} \\
 then press return. \\
 See how it echoes the number back to you? Now type: \\
