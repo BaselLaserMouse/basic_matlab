@@ -344,7 +344,7 @@ t*10                % element-wise multiplication, using scalar expansion
 
 What if you have a long vector and you want to keep, say, only the numbers which have a value greater than zero?
 Obviously you don't want to do this manually. 
-Instead, you will use \textbf{logig operators} to \textbf{filter} the vector. 
+Instead, you will use \textbf{logic operators} to \textbf{filter} the vector. 
 The logic operators available to you are:
 \begin{itemize}
 \item {==} (equals to)
@@ -361,12 +361,13 @@ Try the following at the command line:
 t = 96;
 t < 100         % Test if t is less than 100
 t > 100         % Test if t is greater than 100
-t == 96         % test if t is 96
+t == 96         % test if t is equal to 96
 \end{lstlisting}
 
 See the way MATLAB returns \mcode{0} when the test if false and \mcode{1} when the test is true? 
 In this instance \mcode{0} and \mcode{1} are logic values to indicate true or false. 
 Now you should write a line of code that tests whether \mcode{t} is not equal to 60.
+This line should, of course, return true.
 
 The output of a logic operation can also be stored to a variable, as follows:
 
@@ -374,9 +375,9 @@ The output of a logic operation can also be stored to a variable, as follows:
 L = t==96
 \end{lstlisting}
 
-See the way \mcode{L} have the value \mcode{1}?
+See the way \mcode{L} has the value \mcode{1}?
 The code looks confusing, but remember that that \mcode{=} means ``assign the number on the right to the variable on the left'' and \mcode{==} means ``is equal to''.
-A very error that we all make is to type \mcode{a=b} instead of \mcode{a==b}.
+A common error that we all make is to type \mcode{a=b} instead of \mcode{a==b}.
 
 The above logic operations also work on vectors. 
 They are used to create a binary vector ``mask'' that can be used to filter another vector of the same size.
@@ -389,7 +390,7 @@ f1 = t(s)       % extract positive values of t in f1, using s
 f2 = t(t <= 0)  % directly extract negative or null values of t in f2
 \end{lstlisting}
 
-In addition, to manipulate vectors, MATLAB provides numerous functions.
+In addition,  MATLAB provides numerous functions to manipulate vectors.
 In the following example, we present some well known functions.
 Be curious, check their documentation!
 \begin{lstlisting}
