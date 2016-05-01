@@ -234,9 +234,9 @@ r3 = round(x, -2);
 What are the values in variables \mcode{r2} and \mcode{r3}?
 Check the function's documentation using \mcode{help} to understand what is going on.
 
-Congratulations, you've now learned the basics of entering information into the command-line!
+We've now covered the basics of entering information into the command-line!
 
-
+\pagebreak
 \section{Writing your own functions}
 
 A MATLAB \textbf{function} is just a text file that contains MATLAB code.
@@ -281,7 +281,7 @@ At the command line you will type, for example: \mcode{A = adder(34)}.
 Check in the \textbf{workspace} panel: is there any variable from the function (\mcode{varIN}, \mcode{doubledIN} or \mcode{OUT})?
 It doesn't matter how many variables are temporarily created in our function, its final output is just one variable.
 
-
+\pagebreak
 
 \section{Manipulating multi-dimensional arrays}
 
@@ -518,6 +518,38 @@ hold off
 Send this figure and the function file you wrote to ``\verb|student_results@mouse.vision|''. 
 The e-mail Subject should be ``Basic Plotting'' and you should include your group member names in the body.
 
+\pagebreak
+\subsection{Advanced plotting: defining axis properties}
+
+Now we will plot something relevant and important to many people. 
+You will be plotting Google search volume data for a \textit{mystery} search term. 
+We're not telling you what the search term is right now. 
+Create a new function file called ``googleTrends.m'' and type the following into it as you go.
+Run it after each line is entered to check for errors. 
+\\
+
+First, you have to download the data that originally came from Google Trends:\\
+\verb|>> urlwrite('http://mouse.vision/gt.csv','gt.csv');|\\
+
+The data were saved to disk. So read the data into MATLAB and plot them:\\
+\verb|>> gt = textread('gt.csv');|\\
+\verb|>> plot(gt)|\\
+\verb|>> ylabel('search volume')|\\
+
+Each data point shows the search volume for that week for this particular search term. 
+Let's add one tick mark per year:\\
+\verb|>> set(gca,'XTick',0:52:700)|\\
+
+That was a new command you've not seen before. 
+We won't explain it now, but it should be fairly obvious what it does. 
+Let's label the tick marks by year:\\
+\verb|>> set(gca,'XTickLabel',2004:2017)|\\
+
+Each year marker is placed at January of that year. 
+Based on this graph, when did the peak popularity for this search term occur?
+Hmmm\ldots so what could this search term be? 
+Yell out your suggestions \textbf{very loudly}. 
+
 
 \pagebreak
 \subsection{Advanced plotting: images and histograms}
@@ -543,9 +575,9 @@ You should obtain something similar to Figure~\ref{fig:adv}~(a).
 
 
 
-Now, for the histogram! Create a \mcode{testHist} function in a new file \verb|testHist.m|:
+Now, for the next graph: the histogram! Create a \mcode{testHist} function in a new file \verb|testHist.m|:
 \begin{enumerate}
-  \item create a vector of 100 random numbers and store it in a variable \mcode{R},
+  \item create a vector (one column or one row) of 100 random numbers and store it in a variable \mcode{R},
   \item display the histogram of \mcode{R} on this figure (use \mcode{hist} or \mcode{histogram}),
   \item run your function in the command line and \textbf{save} your figure as a .png image.
 \end{enumerate}
