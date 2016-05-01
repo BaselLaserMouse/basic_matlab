@@ -331,9 +331,6 @@ t2 = t';  % transposing using a quote
 size(t2)  % size of the column vector
 \end{lstlisting}
 
-
-\subsection{Operations, filtering and functions on vectors}
-
 Arithmetic still works with vectors.
 You can easily add, subtract, multiply, etc, all elements of an array by a number.
 Try the following:
@@ -343,17 +340,51 @@ a = 10              % scalar variable
 t*10                % element-wise multiplication, using scalar expansion
 \end{lstlisting}
 
-It is also possible to convert a vector into a binary (0 or 1) vector using comparison operators \mcode{<} (inferior), \mcode{<=} (inferior or equal), \mcode{>} (superior), \mcode{>=} (superior or equal) and {==} (equality).%
-\footnote{%
-  A very error that you are likely to make is to type \mcode{a=b} instead of \mcode{a==b}.
-  Remember that \mcode{=} is the assignment operator but \mcode{==} is an equality test.
-}
-A binary vector can be used as a mask to filter another vector of the same size.
+\subsection{Logic operations, filtering, and functions on vectors}
+
+What if you have a long vector and you want to keep, say, only the numbers which have a value greater than zero?
+Obviously you don't want to do this manually. 
+Instead, you will use \textbf{logig operators} to \textbf{filter} the vector. 
+The logic operators available to you are:
+\begin{itemize}
+\item {==} (equals to)
+\item {~=} (not equals to)
+\item \mcode{<} (less than)
+\item \mcode{<=} (less than or equals to)
+\item \mcode{>} (greater than)
+\item \mcode{>=} (greater than or equals to)
+\end{itemize}
+
+Let's first see how the logic operators work on single numbers before exploring vectors. 
+Try the following at the command line:
+\begin{lstlisting}
+t = 96;
+t < 100         % Test if t is less than 100
+t > 100         % Test if t is greater than 100
+t == 96         % test if t is 96
+\end{lstlisting}
+
+See the way MATLAB returns \mcode{0} when the test if false and \mcode{1} when the test is true? 
+In this instance \mcode{0} and \mcode{1} are logic values to indicate true or false. 
+Now you should write a line of code that tests whether \mcode{t} is not equal to 60.
+
+The output of a logic operation can also be stored to a variable, as follows:
+
+\begin{lstlisting}
+L = t==96
+\end{lstlisting}
+
+See the way \mcode{L} have the value \mcode{1}?
+The code looks confusing, but remember that that \mcode{=} means ``assign the number on the right to the variable on the left'' and \mcode{==} means ``is equal to''.
+A very error that we all make is to type \mcode{a=b} instead of \mcode{a==b}.
+
+The above logic operations also work on vectors. 
+They are used to create a binary vector ``mask'' that can be used to filter another vector of the same size.
 Test the following in the command line:
 \begin{lstlisting}
 t = [2, -3, 4, 2, -5];
-t == 2          % binary vector designating values of t equal to 2
-s = t > 0       % binary vector designating positive values in t
+t == 2          % binary vector to filter for values of t equal to 2
+s = t > 0       % binary vector extracting positive values in t
 f1 = t(s)       % extract positive values of t in f1, using s
 f2 = t(t <= 0)  % directly extract negative or null values of t in f2
 \end{lstlisting}
