@@ -15,6 +15,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{helvet}
 \usepackage[compact]{titlesec}
+\usepackage{microtype}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
 
 \usepackage{enumitem} %easily change item spacing
@@ -327,7 +328,7 @@ t(1:2:end)  % access elements at odd indices
 
 To check the size of a vector, you can use the \mcode{length}, \mcode{size} or \mcode{numel} functions.
 Go to the help pages for these functions and read about them.
-Try all three functions on the \mcode{t} variable. Is their any difference?
+Try all three functions on the \mcode{t} variable. Is there any difference?
 
 \pagebreak
 The variable \mcode{t} is a row vector (1 row).
@@ -427,8 +428,9 @@ In the following exercise you will learn how to make a matrix ``by hand'' and ho
 t = [1,2,3,90; 4,5,6,90]  % make an array with two rows and four columns
 size(t)
 \end{lstlisting}
+
 Try the \mcode{numel} and \mcode{length} functions on this matrix.
-What's different from vector case?
+What's different from the vector case?
 
 To create arrays of zeros or ones, you can use the \mcode{zeros} and \mcode{ones} functions.
 Check their documentation with \mcode{help} or \mcode{doc}, and make a 3-by-4 matrix of zeros and a vector of 5 ones.
@@ -707,7 +709,7 @@ Right, here are some nice online resources to complete and go beyond this tutori
   }
 \end{itemize}
 
-The last website, Software Carpentry, is a golden mine for data analysis.
+The last website, Software Carpentry, is a goldmine for data analysis.
 Check their lessons\footnote{\url{http://software-carpentry.org}} if you want to learn more about other tools and programming languages used to crunch data.
 
 Happy analysis!
