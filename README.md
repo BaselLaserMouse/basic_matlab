@@ -20,5 +20,5 @@ A precompiled version is available at
 
 ## Associated data
 
-**Note for maintainer:** The `data` folder contains files that has to be
+**Note for maintainer:** The `data` folder contains files that have to be
 accessible to the students, at [mouse.vision](http://mouse.vision).
