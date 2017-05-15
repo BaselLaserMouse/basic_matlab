@@ -1,24 +1,27 @@
 \documentclass{article}
 
-\usepackage{todonotes}
+\usepackage{fullpage}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage[framed,numbered,autolinebreaks]{mcode}
-\usepackage{fullpage}
-\usepackage{url,textcomp}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{18pt}
-\title{MATLAB Introduction}
-\author{Rob Campbell \& Maxime Rio}
-\date{}
-
-\renewcommand{\familydefault}{\sfdefault}
+\usepackage{url}
+\usepackage{textcomp}
 \usepackage{helvet}
-\usepackage[compact]{titlesec}
 \usepackage{microtype}
-\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
+\usepackage{todonotes}
 
 \usepackage{enumitem} % easily change item spacing
 \setitemize{noitemsep} % sets no itemsep for enumerate lists only
+
+% \usepackage[compact]{titlesec}
+% \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 0pt minus 5pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{18pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+\title{MATLAB Introduction}
+\author{Rob Campbell \& Maxime Rio}
+\date{}
 
 \begin{document}
 
@@ -418,7 +421,6 @@ What is returned in \mcode{xmax} and \mcode{idx} variables?
 What happen if you just type \mcode{xmax = max(t)}?
 
 
-\pagebreak
 \subsection{Matrices and other arrays}
 
 A vector has one dimension, whereas an \textbf{matrix} has two dimensions.
