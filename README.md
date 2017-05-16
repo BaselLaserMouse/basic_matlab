@@ -1,6 +1,6 @@
 # MATLAB Introduction
 
-This repository contains material for the MATLAB tutorial given during the 2016
+This repository contains material for the MATLAB tutorial given during the 2017
 *Blockkurs*.
 
 
